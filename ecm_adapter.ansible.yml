@@ -10,8 +10,8 @@
     environment:
       ARTEMIS_USERNAME: ecmamq
       ARTEMIS_PASSWORD: "{{ artemis_password }}"
-    networks:
-      - name: "{{ docker_network_name }}"
+ #   networks:
+ #     - name: "{{ docker_network_name }}"
 
 - name: Add the container to inventory
   ansible.builtin.add_host:
