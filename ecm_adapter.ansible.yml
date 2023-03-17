@@ -1,6 +1,20 @@
-- name: Hello KSDD
-  hosts: all
-  tasks:
-    - name: Hello KSDD
-      debug:
-        msg: "Привет команда КСДД!"
+- name: Apache ActiveMQ Artemis container
+  community.general.docker_container:
+    #docker_host: myserver.net:4243
+    name: ecm_artemis_adapter
+    image: quay.io/artemiscloud/activemq-artemis-broker:artemis.2.28.0
+    ports:
+      - "8161:8161"
+      - "61616:61616"
+      - "5672:5672"
+    environment:
+      ARTEMIS_USERNAME: ecmamq
+      ARTEMIS_PASSWORD: ecmamq
+
+- name: Add the container to inventory
+  ansible.builtin.add_host:
+    name: ecm_artemis_adapter
+    ansible_connection: docker
+  #  ansible_docker_extra_args: "--tlsverify --tlscacert=/path/to/ca.pem --tlscert=/path/to/client-cert.pem --tlskey=/path/to/client-key.pem -H=tcp://myserver.net:4243"
+    ansible_user: makhlu
+  changed_when: false
