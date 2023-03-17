@@ -1,5 +1,5 @@
 - name: Apache ActiveMQ Artemis container
-  community.general.docker_container:
+  community.docker.docker_container:
     #docker_host: myserver.net:4243
     name: ecm_artemis_adapter
     image: quay.io/artemiscloud/activemq-artemis-broker:artemis.2.28.0
@@ -9,7 +9,9 @@
       - "5672:5672"
     environment:
       ARTEMIS_USERNAME: ecmamq
-      ARTEMIS_PASSWORD: ecmamq
+      ARTEMIS_PASSWORD: "{{ artemis_password }}"
+    networks:
+      - name: "{{ docker_network_name }}"
 
 - name: Add the container to inventory
   ansible.builtin.add_host:
