@@ -1,7 +1,6 @@
-- name: Add the container to inventory
-  ansible.builtin.add_host:
-    name: docker-artemis
-    ansible_connection: docker
-  #  ansible_docker_extra_args: "--tlsverify --tlscacert=/path/to/ca.pem --tlscert=/path/to/client-cert.pem --tlskey=/path/to/client-key.pem -H=tcp://myserver.net:4243"
-  #  ansible_user: makhlu
-  changed_when: false
+- name: Hello KSDD
+  hosts: all
+  tasks:
+    - name: Hello KSDD
+      debug:
+        msg: "Привет команда КСДД contaner!"
