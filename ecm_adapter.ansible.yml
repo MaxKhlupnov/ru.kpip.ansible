@@ -1,5 +1,5 @@
 - name: Apache ActiveMQ Artemis container
-  community.docker.docker_container:
+  docker_container:
     #docker_host: myserver.net:4243
     name: ecm_artemis_adapter
     image: quay.io/artemiscloud/activemq-artemis-broker:artemis.2.28.0
