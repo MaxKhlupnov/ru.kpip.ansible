@@ -1,5 +1,6 @@
-- name: Hello KSDD
+- name: Install amq 
   hosts: all
+  collections:
+    - middleware_automation.amq
   roles:
-    - java
-    - ansible-role-activemq
+    - activemq
