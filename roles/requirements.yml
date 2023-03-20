@@ -1,4 +1,2 @@
 - src: https://github.com/ansible-middleware/amq.git
-  scm: git
-  version: master
   name: activemq
