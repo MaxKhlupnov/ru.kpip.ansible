@@ -1,0 +1,34 @@
+---
+- name: "Update profile for instance {{ activemq.instance_name }} with new artemis version"
+  ansible.builtin.lineinfile:
+    path: "{{ activemq.instance_home }}/etc/artemis.profile"
+    regexp: '^ARTEMIS_HOME=.*'
+    line: "ARTEMIS_HOME='{{ activemq.home }}'"
+  become: yes
+  register: broker_updated
+  notify:
+    - restart amq_broker
+
+- name: "Check artemis {{ activemq.home }} activemq schema"
+  middleware_automation.amq.xml:
+    path: "{{ activemq.home }}/schema/activemq.xsd"
+    xpath: /xs:schema
+    content: attribute
+    namespaces:
+      xs: http://www.w3.org/2001/XMLSchema
+  register: activemq_xsd
+  become: yes
+
+- name: "Ensure bootstrap xsd namespace {{ activemq_xsd.matches[0]['{http://www.w3.org/2001/XMLSchema}schema'].targetNamespace }} is correct for instance {{ activemq.instance_name }}"
+  ansible.builtin.lineinfile:
+    path: "{{ activemq.instance_home }}/etc/bootstrap.xml"
+    regexp: '<broker xmlns=".*">'
+    line: "<broker xmlns=\"{{ activemq_xsd.matches[0]['{http://www.w3.org/2001/XMLSchema}schema'].targetNamespace }}\">"
+  become: yes
+
+- name: "Ensure mgmt context xsd namespace {{ activemq_xsd.matches[0]['{http://www.w3.org/2001/XMLSchema}schema'].targetNamespace }} is correct for instance {{ activemq.instance_name }}"
+  ansible.builtin.lineinfile:
+    path: "{{ activemq.instance_home }}/etc/management.xml"
+    regexp: '<management-context xmlns=".*">'
+    line: "<management-context xmlns=\"{{ activemq_xsd.matches[0]['{http://www.w3.org/2001/XMLSchema}schema'].targetNamespace }}\">"
+  become: yes

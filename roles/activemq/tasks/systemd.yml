@@ -1,0 +1,58 @@
+---
+- name: Determine JAVA_HOME for selected JVM RPM  # noqa blocked_modules
+  ansible.builtin.shell: |
+    set -o pipefail
+    which java 
+  args:
+    executable: /bin/bash
+  changed_when: False
+  register: rpm_java_home
+
+# --------------------------------------------------------------------
+#    В Debian нет sysconfig
+#- name: "Configure sysconfig file for {{ activemq.instance_name }} {{ activemq.service_name }} service"
+#  become: yes
+#  ansible.builtin.template:
+#    src: amq_broker.sysconfig.j2
+#    dest: "/etc/sysconfig/{{ activemq.instance_name }}"
+#    owner: root
+#    group: root
+#    mode: 0644
+#  vars:
+#    activemq_rpm_java_home: "{{ rpm_java_home.stdout }}"
+#  notify:
+#    - restart amq_broker
+
+#- name: "Configure systemd unit file for {{ activemq.instance_name }} {{ activemq.service_name }} service"
+#  ansible.builtin.template:
+#    src: "{{ activemq_service_override_template | default('amq_broker.service.j2', true) }}"
+#    dest: "/etc/systemd/system/{{ activemq.instance_name }}.service"
+#    owner: root
+#    group: root
+#    mode: 0644
+#  become: yes
+#  register: systemdunit
+#  notify:
+#    - restart amq_broker
+
+- name: "Check instance directory: {{ activemq_dest }}/{{ activemq.instance_name }}"
+  ansible.builtin.stat:
+    path: "{{ activemq_dest }}/{{ activemq.instance_name }}/bin"
+  register: instance_directory
+  become: yes
+
+- name: "Generate artemis configuration for: {{ activemq_dest }}/{{ activemq.instance_name }}"
+  ansible.builtin.include_tasks: configure_artemis.yml
+  when:
+    - not instance_directory.stat.exists
+
+- name: "Create instance {{ activemq.instance_name }} of {{ activemq.service_name }}"
+  ansible.builtin.command:
+    cmd: "{{ activemq.home }}/bin/artemis create {{ activemq.instance_home }} {{ activemq_options }}"
+    creates: "{{ activemq.instance_home }}/bin/artemis-service"
+  become: yes
+  become_method: sudo
+#  become_user: "{{ activemq_service_user }}"
+  register: broker_created
+  when:
+    - not instance_directory.stat.exists

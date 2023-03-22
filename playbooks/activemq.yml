@@ -1,0 +1,5 @@
+---
+- name: Playbook for ActiveMQ Artemis
+  hosts: all
+  roles:
+   - middleware_automation.amq.activemq

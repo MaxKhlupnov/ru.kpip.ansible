@@ -1,4 +1,11 @@
 - name: Playbook for ActiveMQ Artemis
   hosts: all
+  #become: true
+  vars:
+    # Setting this for unarchive to work
+    ansible_remote_tmp: /home/makhlu
+    activemq_base_package_list: [unzip,iproute,sed,procps-ng,initscripts,libaio,lxml]
   roles:
-   - middleware_automation.amq.activemq
+   - middleware_automation.amq.activemq    
+  
+    

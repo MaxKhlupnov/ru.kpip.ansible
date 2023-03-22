@@ -1,0 +1,103 @@
+---
+- name: Retrieve existing users
+  ansible.builtin.slurp:
+    src: "{{ activemq.instance_home }}/etc/artemis-users.properties"
+  register: existing_users
+  become: yes
+
+- name: Set masked user passwords
+  ansible.builtin.include_tasks: mask_password.yml
+  loop: "{{ activemq_users }}"
+  loop_control:
+    label: "{{ item.user }}"
+  no_log: True
+
+- name: Configure users
+  ansible.builtin.template:
+    src: artemis-users.properties.j2
+    dest: "{{ activemq.instance_home }}/etc/artemis-users.properties"
+    owner: "{{ activemq_service_user }}"
+    group: "{{ activemq_service_group }}"
+    mode: 0640
+  no_log: True
+  become: yes
+
+- name: Configure roles
+  ansible.builtin.template:
+    src: artemis-roles.properties.j2
+    dest: "{{ activemq.instance_home }}/etc/artemis-roles.properties"
+    owner: "{{ activemq_service_user }}"
+    group: "{{ activemq_service_group }}"
+    mode: 0640
+  become: yes
+
+- name: Create security settings
+  ansible.builtin.set_fact:
+    security_settings: "{{ security_settings | default([]) + [ lookup('template', 'security_settings.broker.xml.j2') ] }}"
+  loop: "{{ activemq_roles }}"
+
+- name: Create messaging roles permissions
+  middleware_automation.amq.xml:
+    path: "{{ activemq.instance_home }}/etc/broker.xml"
+    xpath: /conf:configuration/core:core/core:security-settings
+    input_type: xml
+    set_children: "{{ security_settings }}"
+    namespaces:
+      conf: urn:activemq
+      core: urn:activemq:core
+    pretty_print: yes
+  become: yes
+  notify:
+    - restart amq_broker with no config refresh
+
+- name: "Update hawtio role"
+  ansible.builtin.lineinfile:
+    path: "{{ activemq.instance_home }}/etc/artemis.profile"
+    regexp: '^HAWTIO_ROLE=.*'
+    line: "HAWTIO_ROLE='{{ activemq_hawtio_role }}'"
+  become: yes
+  notify:
+    - restart amq_broker
+
+- name: Ensure management.xml has no comments (lxml bug workaround)
+  ansible.builtin.replace:
+    path: "{{ activemq.instance_home }}/etc/management.xml"
+    regexp: '<!--[\s\S]*?-->'
+    replace: ''
+  become: yes
+
+- name: Create management access default
+  ansible.builtin.set_fact:
+    management_access_default: "{{ management_access_default | default([]) + [ lookup('template', 'default_access.management.xml.j2') ] }}"
+  loop: "{{ activemq_management_access_default }}"
+  loop_control:
+    loop_var: method
+    label: "{{ method }}"
+
+- name: Create management access domains
+  ansible.builtin.set_fact:
+    management_access_domains: "{{ management_access_domains | default([]) + [ lookup('template', 'role_access.management.xml.j2') ] }}"
+  loop: "{{ activemq_management_access_domains }}"
+  loop_control:
+    loop_var: domain
+    label: "{{ domain.name }}"
+
+- name: Create management default access configuration
+  middleware_automation.amq.xml:
+    path: "{{ activemq.instance_home }}/etc/management.xml"
+    xpath: //*[local-name()='default-access']
+    input_type: xml
+    set_children: "{{ management_access_default }}"
+  become: yes
+  notify:
+    - restart amq_broker
+
+- name: Create management access roles configuration
+  middleware_automation.amq.xml:
+    path: "{{ activemq.instance_home }}/etc/management.xml"
+    xpath: //*[local-name()='role-access']
+    input_type: xml
+    set_children: "{{ management_access_domains }}"
+  become: yes
+  notify:
+    - restart amq_broker

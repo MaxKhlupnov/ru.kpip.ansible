@@ -1,0 +1,126 @@
+---
+- name: Check prerequisites
+  ansible.builtin.include_tasks: prereqs.yml
+  tags:
+    - prereqs
+
+- name: Validate broker configuration
+  ansible.builtin.include_tasks: validate_config.yml
+  tags:
+    - validation
+
+- name: Include firewall config tasks
+  ansible.builtin.include_tasks: firewalld.yml
+  when: activemq_configure_firewalld
+  tags:
+    - firewall
+
+- name: Include install tasks
+  ansible.builtin.include_tasks: install.yml
+  tags:
+    - install
+
+- name: Include systemd tasks
+  ansible.builtin.include_tasks: systemd.yml
+  tags:
+    - systemd
+
+- name: "Check instance directory: {{ activemq_dest }}/{{ activemq.instance_name }}"
+  ansible.builtin.stat:
+    path: "{{ activemq_dest }}/{{ activemq.instance_name }}/bin"
+  register: instance_directory
+  become: yes
+
+- name: "Check target directory profile version"
+  when:
+    - instance_directory is defined
+    - instance_directory.stat.exists
+  become: yes
+  block:
+    - name: Reset upgrade flag
+      ansible.builtin.set_fact:
+        needs_upgrade: no
+    - name: Read profile file
+      ansible.builtin.slurp:
+        src: "{{ activemq.instance_home }}/etc/artemis.profile"
+      register: profile_file
+    - name: Display versions
+      ansible.builtin.debug:
+        msg: "Requested version: {{ activemq_version }} / current profile: {{ profile_file.content | b64decode | regex_search(\"ARTEMIS_HOME='?.*'?\", multiline=True) }}"
+    - name: Set upgrade flag
+      ansible.builtin.set_fact:
+        needs_upgrade: yes
+      when: (profile_file.content | b64decode | regex_search("ARTEMIS_HOME='?" + activemq_installdir + "'?", multiline=True)) == None
+
+- name: Include post upgrade tasks
+  ansible.builtin.include_tasks: upgrade.yml
+  when:
+    - instance_directory is defined
+    - instance_directory.stat.exists
+    - needs_upgrade is defined
+    - needs_upgrade
+
+- name: Setup clustering with jgroups
+  ansible.builtin.include_tasks: jgroups.yml
+  when:
+    - activemq_ha_enabled
+    - activemq_cluster_discovery == 'jgroups'
+
+- name: Include keystore copy tasks
+  ansible.builtin.include_tasks: keystores.yml
+  when:
+    - activemq_tls_enabled
+  tags:
+    - keystores
+
+- name: "Generate broker configuration for: {{ activemq_dest }}/{{ activemq.instance_name }}"
+  ansible.builtin.include_tasks: configure_broker.yml
+
+- name: Reload systemd
+  become: yes
+  ansible.builtin.systemd: # noqa no-handler definitely not a candidate for a handler, because of start/flush below
+    daemon_reload: yes
+  when:
+    - systemdunit is defined
+    - systemdunit.changed
+
+- name: "Start and wait for {{ activemq.service_name }} service (first node)"
+  ansible.builtin.include_tasks: start.yml
+  run_once: yes
+  when: activemq_db_enabled
+
+- name: "Start and wait for {{ activemq.service_name }} service (remaining nodes)"
+  ansible.builtin.include_tasks: start.yml
+
+- name: Check service status
+  ansible.builtin.command: "systemctl status {{ activemq.instance_name }}"
+  register: activemq_service_status
+  become: yes
+  changed_when: False
+  retries: 6
+  delay: 5
+
+- name: Verify service status
+  ansible.builtin.assert:
+    that:
+      - activemq_service_status is defined
+      - activemq_service_status.stdout is defined
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: Create default logs directory
+  become: yes
+  ansible.builtin.file:
+    state: directory
+    dest: "/var/log/{{ activemq.service_name }}"
+    owner: "{{ activemq_service_user }}"
+    group: "{{ activemq_service_group }}"
+    mode: 0750
+
+- name: Link default logs directory
+  become: yes
+  ansible.builtin.file:
+    state: link
+    src: "{{ activemq.instance_home }}/log"
+    dest: "/var/log/{{ activemq.service_name }}/{{ activemq.instance_name }}"

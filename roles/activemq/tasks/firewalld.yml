@@ -1,0 +1,37 @@
+---
+- name: Ensure required package firewalld are installed
+  ansible.builtin.include_tasks: fastpackages.yml
+  vars:
+    packages_list:
+      - firewalld
+
+- name: Enable and start the firewalld service
+  become: yes
+  ansible.builtin.systemd:
+    name: firewalld
+    enabled: yes
+    state: started
+
+- name: "Configure firewall for {{ activemq.service_name }} ports"
+  become: yes
+  ansible.posix.firewalld:
+    port: "{{ item }}"
+    permanent: true
+    state: enabled
+    immediate: yes
+  loop:
+    - "{{ activemq_http_port }}/tcp"
+    - "{{ activemq_port }}/tcp"
+    - "{{ activemq_port_hornetq }}/tcp"
+    - "{{ activemq_port_amqp }}/tcp"
+    - "{{ activemq_port_mqtt }}/tcp"
+    - "{{ activemq_port_stomp }}/tcp"
+
+- name: "Configure firewall for JMX exporter port"
+  become: yes
+  ansible.posix.firewalld:
+    port: "{{ activemq_jmx_exporter_port }}/tcp"
+    permanent: true
+    state: enabled
+    immediate: yes
+  when: activemq_jmx_exporter_enabled

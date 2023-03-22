@@ -1,0 +1,89 @@
+---
+- name: "Configure AMQ broker logging"
+  become: yes
+  ansible.builtin.template:
+    src: logging.properties.j2
+    dest: "{{ activemq.instance_home }}/etc/logging.properties"
+    owner: "{{ activemq_service_user }}"
+    group: "{{ activemq_service_group }}"
+    mode: 0644
+  notify:
+    - restart amq_broker
+
+- name: Create user and roles
+  ansible.builtin.include_tasks: user_roles.yml
+  when: activemq_users | length > 0
+  tags:
+    - users
+
+- name: Configure acceptors
+  ansible.builtin.include_tasks: acceptors.yml
+  when: activemq_acceptors | length > 0
+
+- name: Configure connectors
+  ansible.builtin.include_tasks: connectors.yml
+  when: activemq_connectors | length > 0
+
+- name: Configure addresses
+  ansible.builtin.include_tasks: addresses.yml
+  when: activemq_addresses | length > 0
+
+- name: Configure journal
+  ansible.builtin.include_tasks: journal.yml
+
+- name: Configure address settings
+  ansible.builtin.include_tasks: address_settings.yml
+  when: activemq_address_settings | length > 0
+
+- name: Configure diverts
+  ansible.builtin.include_tasks: diverts.yml
+  when: activemq_diverts | length > 0
+
+- name: "Configure jolokia access"
+  become: yes
+  ansible.builtin.template:
+    src: jolokia-access.xml.j2
+    dest: "{{ activemq.instance_home }}/etc/jolokia-access.xml"
+    owner: "{{ activemq_service_user }}"
+    group: "{{ activemq_service_group }}"
+    mode: 0644
+  notify:
+    - restart amq_broker
+
+- name: "Configure prometheus metrics"
+  become: yes
+  when: activemq_prometheus_enabled and amq_broker_enable is defined and amq_broker_enable
+  block:
+    - name: Find available library path from installation
+      ansible.builtin.find:
+        paths: "{{ activemq.home }}/lib/"
+        file_type: file
+        use_regex: yes
+        recurse: yes
+        patterns: [ 'artemis-prometheus-metrics-plugin-([0-9]+[.]){3}redhat-[0-9]+.jar$' ]
+      register: prometheus_filename
+    - name: Ensure lib is available to instance
+      ansible.builtin.copy:
+        src: "{{ prometheus_filename.files[0].path }}"
+        dest: "{{ activemq.instance_home }}/lib/"
+        remote_src: yes
+        owner: "{{ activemq_service_user }}"
+        group: "{{ activemq_service_group }}"
+        mode: 0644
+      notify:
+        - restart amq_broker
+    - name: Configure metrics plugin
+      middleware_automation.amq.xml:
+        path: "{{ activemq.instance_home }}/etc/broker.xml"
+        xpath: /conf:configuration/core:core/core:metrics/core:plugin
+        attribute: class-name
+        value: org.apache.activemq.artemis.core.server.metrics.plugins.ArtemisPrometheusMetricsPlugin
+        namespaces:
+          conf: urn:activemq
+          core: urn:activemq:core
+      notify:
+        - restart amq_broker
+  rescue:
+    - name: Report metrics plugin failure
+      ansible.builtin.debug:
+        msg: "Could not install prometheus metrics plugin because the installation zipfile does not provide it"

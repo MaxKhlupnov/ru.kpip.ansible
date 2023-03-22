@@ -1,0 +1,291 @@
+---
+### Version settings
+activemq_version: 2.18.0
+activemq_archive: "apache-artemis-{{ activemq_version }}-bin.zip"
+activemq_download_url: "https://archive.apache.org/dist/activemq/activemq-artemis/{{ activemq_version }}/{{ activemq_archive }}"  
+activemq_installdir: "{{ activemq_dest }}/apache-artemis-{{ activemq_version }}"
+
+### Install location and service settings
+activemq_dest: /opt/amq
+activemq_offline_install: False
+activemq_config_dir: "conf"
+activemq_config_xml: amq-broker.xml
+activemq_config_override_template: ''
+activemq_service_user: amq-broker
+activemq_service_group: amq-broker
+activemq_instance_name: amq-broker
+activemq_instance_username: amq-broker
+activemq_instance_password: amq-broker
+activemq_instance_anonymous: False
+activemq_service_pidfile: data/artemis.pid
+activemq_configure_firewalld: False
+
+### Common configuration settings
+activemq_bind_address: 0.0.0.0
+activemq_host: localhost
+activemq_http_port: 8161
+activemq_jolokia_url: "http://{{ activemq_host }}:{{ activemq_http_port }}/console/jolokia"
+activemq_console_url: "http://{{ activemq_host }}:{{ activemq_http_port }}/console/"
+activemq_configuration_file_refresh_period: 5000
+activemq_jvm_package: java-11-openjdk-headless
+activemq_java_home:
+activemq_java_opts: "{{ [
+   '-Xms512M -Xmx2G',
+   '-XX:+PrintClassHistogram -XX:+UseG1GC -XX:+UseStringDeduplication',
+   '-Dhawtio.disableProxy=true -Dhawtio.realm=activemq -Dhawtio.offline=true -Dhawtio.rolePrincipalClasses=org.apache.activemq.artemis.spi.core.security.jaas.RolePrincipal',
+   '-Djolokia.policyLocation=file:' + activemq_dest + '/' + activemq_instance_name + '/etc/jolokia-access.xml'
+ ] | join(' ') }}"
+activemq_port: 61616        # for protocols [CORE,MQTT,AMQP,STOMP,HORNETQ,OPENWIRE]
+activemq_port_hornetq: 5445 # for protocols [HORNETQ,STOMP]
+activemq_port_amqp: 5672    # for protocols [AMQP]
+activemq_port_mqtt: 1883    # for protocols [MQTT]
+activemq_port_stomp: 61613  # for protocols [STOMP]
+activemq_name: 'Apache ActiveMQ'
+activemq_service_name: activemq
+activemq_service_override_template: ''
+
+### Enable configuration for high availability
+activemq_ha_enabled: False
+activemq_cluster_user: amq-cluster-user
+activemq_cluster_pass: amq-cluster-pass
+activemq_cluster_maxhops: 1
+activemq_cluster_lb_policy: ON_DEMAND
+activemq_replicate: False
+activemq_replicated: False
+# cluster discovery: ['jgroups' for shared file ping, 'multicast' for UDP multicast, 'static' for static declaration]
+activemq_cluster_discovery: static
+activemq_systemd_wait_for_port: "{{ activemq_ha_enabled and not activemq_shared_storage }}"
+activemq_systemd_wait_for_log: "{{ activemq_ha_enabled and activemq_shared_storage }}"
+
+### Enable persistence and persistence options
+activemq_persistence_enabled: True
+activemq_persist_id_cache: True
+activemq_id_cache_size: 20000
+# file journal configuration
+# journal type, valid values are [ ASYNCIO: libaio, MAPPED: mmap files, NIO: Plain Java Files  ]
+activemq_journal_type: ASYNCIO
+activemq_data_directory: "{{ activemq_shared_storage_path if activemq_shared_storage else activemq_dest + '/' + activemq_instance_name  + '/data' }}"
+activemq_paging_directory: "{{ activemq_data_directory }}/paging"
+activemq_bindings_directory: "{{ activemq_data_directory }}/bindings"
+activemq_journal_directory: "{{ activemq_data_directory }}/journal"
+activemq_large_messages_directory: "{{ activemq_data_directory }}/largemessages"
+activemq_journal_datasync: True
+activemq_journal_min_files: 2
+activemq_journal_pool_files: -1
+activemq_journal_device_block_size: 4096
+activemq_journal_file_size: 10M
+activemq_journal_buffer_timeout: "{{ 500000 if activemq_journal_type == 'ASYNCIO' else 3333333 }}"
+activemq_journal_max_io: "{{ 4096 if activemq_journal_type == 'ASYNCIO' else 1 }}"
+# database configuration for JDBC persistence
+activemq_db_enabled: False
+activemq_db_jdbc_url: 'jdbc:derby:target/derby/database-store;create=true'
+activemq_db_bindings_table: BINDINGS_TABLE
+activemq_db_message_table: MESSAGE_TABLE
+activemq_db_large_message_table: LARGE_MESSAGES_TABLE
+activemq_db_jdbc_driver_class: org.apache.derby.jdbc.EmbeddedDriver
+
+### Enable TLS
+activemq_tls_enabled: False
+activemq_tls_keystore_path:
+activemq_tls_keystore_password:
+activemq_tls_keystore_dest: "{{ activemq_dest }}/{{ activemq_instance_name }}/etc/identity.ks"
+
+# Mutual authentication (requires TLS)
+activemq_tls_mutual_authentication: False
+activemq_tls_truststore_path:
+activemq_tls_truststore_password:
+activemq_tls_truststore_dest: "{{ activemq_dest }}/{{ activemq_instance_name }}/etc/trust.ks"
+
+# Users
+# list of users the create, user is not created if password empty; list of (user,password,roles) dicts
+# .roles is a list of activemq_roles.name
+activemq_users:
+  - user: "{{ activemq_instance_username }}"
+    password: "{{ activemq_instance_password }}"
+    roles: [ amq ]
+
+# Roles
+# .permissions is subset of:
+# [ createNonDurableQueue, deleteNonDurableQueue, createDurableQueue, deleteDurableQueue, createAddress, deleteAddress, consume, browse, send, manage ]
+activemq_roles:
+  - name: amq
+    match: '#'
+    permissions: [ createNonDurableQueue, deleteNonDurableQueue, createDurableQueue, deleteDurableQueue, createAddress, deleteAddress, consume, browse, send, manage ]
+
+# management console access methods for roles activemq_hawtio_role
+activemq_management_access_default: [ 'list*', 'get*', 'is*', 'set*', 'browse*', 'count*', '*' ]
+
+# management console access methods per domain for roles activemq_hawtio_role
+activemq_management_access_domains:
+  - name: org.apache.activemq.artemis
+    methods: [ 'list*', 'get*', 'is*', 'set*', 'browse*', 'count*', '*' ]
+  - name: java.lang
+    methods: [ 'list*', 'get*', 'is*', 'set*', '*' ]
+
+
+# Jolokia
+activemq_hawtio_role: amq
+activemq_cors_allow_origin: [ '*://0.0.0.0*' ]
+activemq_cors_strict_checking: True
+
+# NIO option
+activemq_nio_enabled: False
+
+## Shared Storage
+activemq_shared_storage: False
+activemq_shared_storage_mounted: True
+activemq_shared_storage_path: "{{ activemq_dest }}/{{ activemq_instance_name }}/data/shared"
+
+## Ports
+activemq_ports_offset_enabled: False
+activemq_ports_offset: 0
+
+# Queues
+activemq_disable_destination_autocreate: True
+activemq_queues: queue.in,queue.out
+
+# Protocol disablement
+activemq_disable_amqp_protocol: False
+activemq_disable_hornetq_protocol: False
+activemq_disable_mqtt_protocol: False
+activemq_disable_stomp_protocol: False
+
+# Logging
+activemq_enable_audit: False
+activemq_logger_level: INFO
+activemq_logger_core_server_level: INFO
+activemq_logger_journal_level: INFO
+activemq_logger_utils_level: INFO
+activemq_logger_utils_critical_level: INFO
+activemq_logger_jms_level: INFO
+activemq_logger_integration_bootstrap_level: INFO
+activemq_logger_jetty_level: WARN
+activemq_logger_curator_level: WARN
+activemq_logger_zookeeper_level: ERROR
+
+# Metrics
+activemq_jmx_exporter_port: 18080
+activemq_jmx_exporter_config_path: "{{ activemq_dest }}/{{ activemq_instance_name }}/etc/jmx_exporter.yml"
+activemq_jmx_exporter_enabled: False
+activemq_jmx_exporter_package: prometheus-jmx-exporter-openjdk11
+activemq_prometheus_enabled: False
+
+### Contoller defaults
+activemq_local_archive_repository: "{{ lookup('env', 'PWD') }}"
+
+### Acceptors configuration
+activemq_acceptors:
+  - name: artemis
+    bind_address: "{{ activemq_host }}"
+    bind_port: "{{ activemq_port }}"
+    parameters:
+      tcpSendBufferSize: 1048576
+      tcpReceiveBufferSize: 1048576
+      amqpMinLargeMessageSize: 102400
+      protocols: CORE,AMQP,STOMP,HORNETQ,MQTT,OPENWIRE
+      useEpoll: true
+      amqpCredits: 1000
+      amqpLowCredits: 300
+      amqpDuplicateDetection: true
+      supportAdvisory: false
+      suppressInternalManagementObjects: false
+  - name: amqp
+    bind_address: "{{ activemq_host }}"
+    bind_port: "{{ activemq_port_amqp }}"
+    parameters:
+      tcpSendBufferSize: 1048576
+      tcpReceiveBufferSize: 1048576
+      protocols: AMQP
+      useEpoll: true
+      amqpMinLargeMessageSize: 102400
+      amqpCredits: 1000
+      amqpLowCredits: 300
+      amqpDuplicateDetection: true
+  - name: stomp
+    bind_address: "{{ activemq_host }}"
+    bind_port: "{{ activemq_port_stomp }}"
+    parameters:
+      tcpSendBufferSize: 1048576
+      tcpReceiveBufferSize: 1048576
+      protocols: STOMP
+      useEpoll: true
+  - name: hornetq
+    bind_address: "{{ activemq_host }}"
+    bind_port: "{{ activemq_port_hornetq }}"
+    parameters:
+      anycastPrefix: jms.queue.
+      multicastPrefix: jms.topic.
+      protocols: HORNETQ,STOMP
+      useEpoll: true
+  - name: mqtt
+    bind_address: "{{ activemq_host }}"
+    bind_port: "{{ activemq_port_mqtt }}"
+    parameters:
+      tcpSendBufferSize: 1048576
+      tcpReceiveBufferSize: 1048576
+      protocols: MQTT
+      useEpoll: true
+
+### Connectors configuration
+activemq_connectors:
+  - name: artemis
+    address: localhost
+    port: "{{ activemq_port }}"
+    parameters:
+      tcpSendBufferSize: 1048576
+      tcpReceiveBufferSize: 1048576
+      protocols: CORE,AMQP,STOMP,HORNETQ,MQTT,OPENWIRE
+      useEpoll: true
+      amqpCredits: 1000
+      amqpLowCredits: 300
+      amqpDuplicateDetection: true
+      amqpMinLargeMessageSize: 102400
+      supportAdvisory: false
+      suppressInternalManagementObjects: false
+
+### Addresses configuration
+activemq_addresses:
+  - name: queue.in
+    anycast:
+      - name: queue.in
+  - name: queue.out
+    anycast:
+      - name: queue.out
+  - name: DLQ
+    anycast:
+      - name: DLQ
+  - name: ExpiryQueue
+    anycast:
+      - name: ExpiryQueue
+
+### Address settings configuration
+activemq_address_settings:
+  - match: activemq.management#
+    parameters:
+      dead_letter_address: DLQ
+      expiry_address: ExpiryQueue
+      redelivery_delay: 0
+      max_size_bytes: -1
+      message_counter_history_day_limit: 10
+      address_full_policy: PAGE
+      auto_create_queues: true
+      auto_create_addresses: true
+      auto_create_jms_queues: true
+      auto_create_jms_topics: true
+  - match: '#'
+    parameters:
+      dead_letter_address: DLQ
+      expiry_address: ExpiryQueue
+      redelivery_delay: 0
+      max_size_bytes: -1
+      message_counter_history_day_limit: 10
+      address_full_policy: PAGE
+      auto_create_queues: false
+      auto_create_addresses: false
+      auto_create_jms_queues: false
+      auto_create_jms_topics: false
+      auto_delete_queues: false
+      auto_delete_addresses: false
+
+### Divert configuration
+activemq_diverts: []

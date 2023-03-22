@@ -1,0 +1,17 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: yes
+  vars:
+    activemq_users:
+    - user: amq
+      password: amqbrokerpass
+      roles: [ amq ]
+  collections:
+    - middleware_automation.common
+  tasks:
+    - name: Include role for broker upgrade
+      ansible.builtin.include_role:
+        name: activemq
+      vars:
+        activemq_version: "{{ '7.10.1' if amq_broker_enable is defined and amq_broker_enable else '2.21.0' }}"

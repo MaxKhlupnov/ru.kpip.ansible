@@ -1,0 +1,18 @@
+# {{ ansible_managed }}
+{% if activemq_jmx_exporter_enabled  %}
+JAVA_ARGS='{{ activemq_java_opts }} -javaagent:/usr/share/java/prometheus-jmx-exporter/jmx_prometheus_javaagent.jar=0.0.0.0:{{ activemq_jmx_exporter_port }}:{{ activemq_jmx_exporter_config_path }}'
+{% else %}
+JAVA_ARGS='{{ activemq_java_opts }}'
+{% endif %}
+JAVA_HOME={{ activemq_java_home  | default(activemq_rpm_java_home, true) }}
+HAWTIO_ROLE='{{ activemq_hawtio_role }}'
+ARTEMIS_INSTANCE_URI='file:{{ activemq.instance_home }}/'
+ARTEMIS_INSTANCE_ETC_URI='file:{{ activemq.instance_home }}/etc/'
+ARTEMIS_HOME='{{ activemq.home }}'
+ARTEMIS_INSTANCE='{{ activemq.instance_home }}'
+{% if activemq_shared_storage %}
+ARTEMIS_DATA_DIR='{{ activemq_shared_storage_path }}'
+{% else %}
+ARTEMIS_DATA_DIR='{{ activemq.instance_home }}/data'
+{% endif %}
+ARTEMIS_ETC_DIR='{{ activemq.instance_home }}/etc'

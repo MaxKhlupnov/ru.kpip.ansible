@@ -1,0 +1,24 @@
+---
+- name: Create acceptor configuration string
+  ansible.builtin.set_fact:
+    acceptors: "{{ acceptors | default([]) + [ lookup('template', 'acceptors.broker.xml.j2') ] }}"
+  loop: "{{ activemq_acceptors }}"
+  loop_control:
+    loop_var: acceptor
+    label: "{{ acceptor.name }}"
+  no_log: True
+
+- name: Create acceptor configuration in broker.xml
+  middleware_automation.amq.xml:
+    path: "{{ activemq.instance_home }}/etc/broker.xml"
+    xpath: /conf:configuration/core:core/core:acceptors
+    input_type: xml
+    set_children: "{{ acceptors }}"
+    namespaces:
+      conf: urn:activemq
+      core: urn:activemq:core
+    pretty_print: yes
+  become: yes
+  no_log: True
+  notify:
+    - restart amq_broker

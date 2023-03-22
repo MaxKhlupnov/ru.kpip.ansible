@@ -1,0 +1,7 @@
+ansible ecm_adapter -a "df -h" -u makhlu
+
+ansible-inventory --list
+
+ansible-playbook -t ecm_adapter -u makhlu --private-key ~/keys/sq-api-openssh-no-pass.key  ecm_adapter.ansible.yml
+
+ansible-playbook -i ecm_inventory.txt -u makhlu --private-key ~/keys/sq-api-openssh-no-pass.key   ecm_adapter.ansible.yml -vvv

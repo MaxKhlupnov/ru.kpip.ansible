@@ -1,0 +1,47 @@
+---
+- name: Create connector configuration string
+  ansible.builtin.set_fact:
+    connectors: "{{ connectors | default([]) + [ lookup('template', 'connectors.broker.xml.j2') ] }}"
+  loop: "{{ activemq_connectors }}"
+  loop_control:
+    loop_var: connector
+    label: "{{ connector.name }}"
+  no_log: True
+
+- name: Create connector configuration in broker.xml
+  middleware_automation.amq.xml:
+    path: "{{ activemq.instance_home }}/etc/broker.xml"
+    xpath: /conf:configuration/core:core/core:connectors
+    input_type: xml
+    set_children: "{{ connectors }}"
+    namespaces:
+      conf: urn:activemq
+      core: urn:activemq:core
+    pretty_print: yes
+  become: yes
+  no_log: True
+  notify:
+    - restart amq_broker
+
+- name: Configure static cluster
+  when:
+    - activemq_cluster_discovery == 'static'
+    - activemq_ha_enabled
+  block:
+    - name: Create cluster connections configuration string
+      ansible.builtin.set_fact:
+        cluster_connections: "{{ lookup('template', 'cluster_connections.broker.xml.j2') }}"
+
+    - name: Create cluster connections in broker.xml
+      middleware_automation.amq.xml:
+        path: "{{ activemq.instance_home }}/etc/broker.xml"
+        xpath: /conf:configuration/core:core/core:cluster-connections
+        input_type: xml
+        set_children: "{{ cluster_connections }}"
+        namespaces:
+          conf: urn:activemq
+          core: urn:activemq:core
+        pretty_print: yes
+      become: yes
+      notify:
+        - restart amq_broker

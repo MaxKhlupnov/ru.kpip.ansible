@@ -1,0 +1,3 @@
+lxml [platform:apt]
+python3-jmespath [platform:apt]
+

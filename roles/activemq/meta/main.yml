@@ -1,0 +1,30 @@
+---
+collections:
+  - middleware_automation.common
+  - ansible.posix
+
+galaxy_info:
+  role_name: activemq
+  namespace: middleware_automation
+  author: Guido Grazioli
+  description: Installs and configures ActiveMQ services.
+  company: Red Hat, Inc.
+
+  license: Apache License 2.0
+
+  min_ansible_version: "2.9"
+
+  platforms:
+   - name: EL
+     versions:
+     - 8
+
+  galaxy_tags:
+    - activemq
+    - broker
+    - redhat
+    - rhel
+    - server
+    - messaging
+    - messagebus
+    - infrastructure

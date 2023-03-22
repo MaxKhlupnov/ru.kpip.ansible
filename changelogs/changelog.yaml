@@ -1,0 +1,191 @@
+ancestor: null
+releases:
+  0.0.1:
+    changes:
+      minor_changes:
+      - 'Import artemis create configuration tasks `#1 <https://github.com/ansible-middleware/amq/pull/1>`_
+
+        '
+    fragments:
+    - 1.yaml
+    release_date: '2022-05-23'
+  0.0.2:
+    changes:
+      major_changes:
+      - 'amq_broker: configuration of static cluster `#3 <https://github.com/ansible-middleware/amq/pull/3>`_
+
+        '
+    fragments:
+    - 3.yaml
+    release_date: '2022-05-24'
+  0.0.3:
+    changes:
+      minor_changes:
+      - 'Add prometheus metrics export plugin `#6 <https://github.com/ansible-middleware/amq/pull/6>`_
+
+        '
+      - 'Add vars and template for logging configuration `#4 <https://github.com/ansible-middleware/amq/pull/4>`_
+
+        '
+      - 'Add vars for prometheus_jmx_exporter setup `#5 <https://github.com/ansible-middleware/amq/pull/5>`_
+
+        '
+    fragments:
+    - 4.yaml
+    - 5.yaml
+    - 6.yaml
+    release_date: '2022-06-23'
+  1.0.0:
+    changes:
+      minor_changes:
+      - 'Configuration for users and roles `#7 <https://github.com/ansible-middleware/amq/pull/7>`_
+
+        '
+      - 'Perform artemis post-upgrade operations on existing instances `#8 <https://github.com/ansible-middleware/amq/pull/8>`_
+
+        '
+    fragments:
+    - 7.yaml
+    - 8.yaml
+    release_date: '2022-07-20'
+  1.1.0:
+    changes:
+      breaking_changes:
+      - 'Rename role ``amq_broker`` to ``activemq`` `#26 <https://github.com/ansible-middleware/amq/pull/26>`_
+
+        '
+      - 'Rename variables prefix to ``activemq_`` `#11 <https://github.com/ansible-middleware/amq/pull/11>`_
+
+        '
+      bugfixes:
+      - 'Add ``become_user`` to artemis commands `#17 <https://github.com/ansible-middleware/amq/pull/17>`_
+
+        '
+      - 'Correctly set etc path and allow cors config for jolokia `#24 <https://github.com/ansible-middleware/amq/pull/24>`_
+
+        '
+      - 'Implement idempotent user password hashes `#25 <https://github.com/ansible-middleware/amq/pull/25>`_
+
+        '
+      - 'Update ``activemq_java_opts`` to be same as activemq defaults `#20 <https://github.com/ansible-middleware/amq/pull/20>`_
+
+        '
+      major_changes:
+      - 'Allow for listing roles for users. Specify security setting match address
+        `#19 <https://github.com/ansible-middleware/amq/pull/19>`_
+
+        '
+      - 'Make variable ``activemq_shared_storage_path`` represent an absolute path
+        `#21 <https://github.com/ansible-middleware/amq/pull/21>`_
+
+        '
+      minor_changes:
+      - 'Arbitrary acceptors configuration via ``activemq_acceptors`` variable `#30
+        <https://github.com/ansible-middleware/amq/pull/30>`_
+
+        '
+      - 'Arbitrary connectors configuration via ``activemq_connectors`` variable `#31
+        <https://github.com/ansible-middleware/amq/pull/31>`_
+
+        '
+      - 'Configuration for management role access `#29 <https://github.com/ansible-middleware/amq/pull/29>`_
+
+        '
+      - 'Variable to config controller download/offline directory `#18 <https://github.com/ansible-middleware/amq/pull/18>`_
+
+        '
+    fragments:
+    - 11.yaml
+    - 17.yaml
+    - 18.yaml
+    - 19.yaml
+    - 20.yaml
+    - 21.yaml
+    - 24.yaml
+    - 25.yaml
+    - 26.yaml
+    - 29.yaml
+    - 30.yaml
+    - 31.yaml
+    release_date: '2022-09-12'
+  1.1.1:
+    changes:
+      bugfixes:
+      - 'Add systemd RequiresMountsFor and unit custom template `#36 <https://github.com/ansible-middleware/amq/pull/36>`_
+
+        '
+      - 'Stop using ansible.builtin.command module arguments incompatible with ansible
+        2.14
+
+        '
+    fragments:
+    - 36.yaml
+    release_date: '2023-01-03'
+  1.2.0:
+    changes:
+      bugfixes:
+      - 'Add ``activemq_data_directory`` variable `#57 <https://github.com/ansible-middleware/amq/pull/57>`_
+
+        '
+      - 'Fix templating error when acceptors or connectors have a single parameter
+        `#47 <https://github.com/ansible-middleware/amq/pull/47>`_
+
+        '
+      - 'Hide secrets from playbook output `#45 <https://github.com/ansible-middleware/amq/pull/45>`_
+
+        '
+      major_changes:
+      - 'Type for ``activemq_cors_allow_origin`` changed from string to list of strings
+        `#53 <https://github.com/ansible-middleware/amq/pull/53>`_
+
+        '
+      minor_changes:
+      - 'Add address/queue configuration `#51 <https://github.com/ansible-middleware/amq/pull/51>`_
+
+        '
+      - 'Add configuration parameters for journal `#43 <https://github.com/ansible-middleware/amq/pull/43>`_
+
+        '
+      - 'Add configuration variables for address settings `#49 <https://github.com/ansible-middleware/amq/pull/49>`_
+
+        '
+      - 'Add diverts configuration `#52 <https://github.com/ansible-middleware/amq/pull/52>`_
+
+        '
+      - 'Don''t trigger restarts when config auto-refresh is enabled `#54 <https://github.com/ansible-middleware/amq/pull/54>`_
+
+        '
+      - 'New flags make systemd unit wait for activemq ports or logs `#50 <https://github.com/ansible-middleware/amq/pull/50>`_
+
+        '
+    fragments:
+    - 43.yaml
+    - 45.yaml
+    - 47.yaml
+    - 49.yaml
+    - 50.yaml
+    - 51.yaml
+    - 52.yaml
+    - 53.yaml
+    - 54.yaml
+    - 57.yaml
+    release_date: '2023-02-07'
+  1.3.0:
+    changes:
+      major_changes:
+      - 'Configuration pre-install validation against schema `#58 <https://github.com/ansible-middleware/amq/pull/58>`_
+
+        '
+      minor_changes:
+      - 'Remove dependency on community.general collection `#59 <https://github.com/ansible-middleware/amq/pull/59>`_
+
+        '
+      - 'Switch middleware_automation.redhat_csp_download for middleware_automation.common
+        `#60 <https://github.com/ansible-middleware/amq/pull/60>`_
+
+        '
+    fragments:
+    - 58.yaml
+    - 59.yaml
+    - 60.yaml
+    release_date: '2023-03-06'

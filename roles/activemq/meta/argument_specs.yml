@@ -1,0 +1,556 @@
+argument_specs:
+    main:
+        options:
+            activemq_version:
+                default: "2.21.0"
+                description: "Apache Artemis version"
+                type: "str"
+            activemq_archive:
+                default: "apache-artemis-{{ activemq_version }}-bin.zip"
+                description: "Apache Artemis install archive filename"
+                type: "str"
+            activemq_download_url:
+                default: "https://archive.apache.org/dist/activemq/activemq-artemis/{{ activemq_version }}/{{ activemq_archive }}"
+                description: "Apache Artemis download URL"
+                type: "str"
+            activemq_installdir:
+                default: "{{ activemq_dest }}/apache-artemis-{{ activemq_version }}"
+                description: "Apache Artemis Installation path"
+                type: "str"
+            activemq_dest:
+                default: "/opt/activemq"
+                description: "Root installation directory"
+                type: "str"
+            activemq_offline_install:
+                default: false
+                description: "Perform an offline installation"
+                type: "bool"
+            activemq_config_dir:
+                default: "conf"
+                description: "Broker instance configuration directory"
+                type: "str"
+            activemq_config_xml:
+                # line 18 of defaults/main.yml
+                default: "amq-broker.xml"
+                description: "Broker instance configuration file"
+                type: "str"
+            activemq_config_override_template:
+                # line 19 of defaults/main.yml
+                default: ""
+                description: "Filename of custom broker xml configuration file to be deployed"
+                type: "str"
+            activemq_service_user:
+                # line 20 of defaults/main.yml
+                default: "amq-broker"
+                description: "POSIX user running the service"
+                type: "str"
+            activemq_service_group:
+                # line 21 of defaults/main.yml
+                default: "amq-broker"
+                description: "POSIX group running the service"
+                type: "str"
+            activemq_instance_name:
+                # line 22 of defaults/main.yml
+                default: "amq-broker"
+                description: "Name of broker instance to deploy"
+                type: "str"
+            activemq_instance_username:
+                # line 23 of defaults/main.yml
+                default: "amq-broker"
+                description: "Username for accessing the broker instance"
+                type: "str"
+            activemq_instance_password:
+                # line 24 of defaults/main.yml
+                default: "amq-broker"
+                description: "Password for accessing the broker instance"
+                type: "str"
+            activemq_instance_anonymous:
+                # line 25 of defaults/main.yml
+                default: false
+                description: "Whether to allow anonymous logins to the instance"
+                type: "bool"
+            activemq_service_pidfile:
+                # line 26 of defaults/main.yml
+                default: "data/artemis.pid"
+                description: "PID file for service"
+                type: "str"
+            activemq_configure_firewalld:
+                # line 27 of defaults/main.yml
+                default: false
+                description: "Whether to install and configure firewalld"
+                type: "bool"
+            activemq_bind_address:
+                # line 30 of defaults/main.yml
+                default: "0.0.0.0"
+                description: "Service bind address"
+                type: "str"
+            activemq_host:
+                # line 31 of defaults/main.yml
+                default: "localhost"
+                description: "Service hostname"
+                type: "str"
+            activemq_http_port:
+                # line 32 of defaults/main.yml
+                default: 8161
+                description: "Service http port serving console and REST api"
+                type: "int"
+            activemq_jolokia_url:
+                # line 33 of defaults/main.yml
+                default: "http://{{ activemq_host }}:{{ activemq_http_port }}/console/jolokia"
+                description: "URL for jolokia REST api"
+                type: "str"
+            activemq_console_url:
+                # line 34 of defaults/main.yml
+                default: "http://{{ activemq_host }}:{{ activemq_http_port }}/console/"
+                description: "URL for console service"
+                type: "str"
+            activemq_jvm_package:
+                # line 35 of defaults/main.yml
+                default: "openjdk-11-jdk"
+                description: "APT package to install for the service"
+                type: "str"
+            activemq_java_home:
+                # line 36 of defaults/main.yml
+                required: true
+                description: "JAVA_HOME of installed JRE, leave empty for using specified activemq_jvm_package path"
+                type: "str"
+            activemq_java_opts:
+                # line 37 of defaults/main.yml
+                default: "-Xms512M -Xmx2G -XX:+PrintClassHistogram -XX:+UseG1GC -XX:+UseStringDeduplication -Dhawtio.disableProxy=true -Dhawtio.realm=activemq -Dhawtio.offline=true -Dhawtio.rolePrincipalClasses=org.apache.activemq.artemis.spi.core.security.jaas.RolePrincipal -Djolokia.policyLocation=${ARTEMIS_INSTANCE_ETC_URI}jolokia-access.xml "
+                description: "Additional JVM options for the service"
+                type: "str"
+            activemq_port:
+                # line 38 of defaults/main.yml
+                default: 61616
+                description: "Main port for the broker instance"
+                type: "int"
+            activemq_port_hornetq:
+                # line 39 of defaults/main.yml
+                default: 5445
+                description: "hornetq port for the broker instance"
+                type: "int"
+            activemq_port_amqp:
+                # line 40 of defaults/main.yml
+                default: 5672
+                description: "AMQP port for the broker instance"
+                type: "int"
+            activemq_port_mqtt:
+                # line 41 of defaults/main.yml
+                default: 1883
+                description: "MQTT port for the broker instance"
+                type: "int"
+            activemq_port_stomp:
+                # line 42 of defaults/main.yml
+                default: 61613
+                description: "STOMP port for the broker instance"
+                type: "int"
+            activemq_ha_enabled:
+                # line 45 of defaults/main.yml
+                default: false
+                description: "Whether to enable clustering"
+                type: "bool"
+            activemq_db_enabled:
+                # line 54 of defaults/main.yml
+                default: false
+                description: "Whether to enable JDBC persistence"
+                type: "bool"
+            activemq_cluster_user:
+                # line 46 of defaults/main.yml
+                default: "amq-cluster-user"
+                description: "Cluster username"
+                type: "str"
+            activemq_cluster_pass:
+                # line 47 of defaults/main.yml
+                default: "amq-cluster-pass"
+                description: "Cluster user password"
+                type: "str"
+            activemq_cluster_maxhops:
+                # line 48 of defaults/main.yml
+                default: 1
+                description: "Cluster max hops"
+                type: "int"
+            activemq_cluster_lb_policy:
+                # line 49 of defaults/main.yml
+                default: "ON_DEMAND"
+                description: "Policy for cluster load balancing"
+                type: "str"
+            activemq_cluster_discovery:
+                default: "static"
+                description: "Cluster discovery: ['jgroups' for shared file ping, 'multicast' for UDP multicast, 'static' for static declaration]"
+                type: "str"
+            activemq_replicate:
+                # line 50 of defaults/main.yml
+                default: false
+                description: "Enables replication"
+                type: "bool"
+            activemq_replicated:
+                # line 51 of defaults/main.yml
+                default: false
+                description: "Designate instance as replicated node"
+                type: "bool"
+            activemq_tls_enabled:
+                # line 57 of defaults/main.yml
+                default: false
+                description: "Whether to enable TLS"
+                type: "bool"
+            activemq_tls_keystore_path:
+                # line 58 of defaults/main.yml
+                default: "identity.ks"
+                description: "Keystore path for TLS connections"
+                type: "str"
+            activemq_tls_keystore_password:
+                # line 59 of defaults/main.yml
+                default: "changeme"
+                description: "Keystore password for TLS connections"
+                type: "str"
+            activemq_tls_keystore_dest:
+                # line 60 of defaults/main.yml
+                default: "{{ activemq_dest }}/{{ activemq_instance_name }}/etc/identity.ks"
+                description: "Path for installation of truststore"
+                type: "str"
+            activemq_tls_mutual_authentication:
+                # line 63 of defaults/main.yml
+                default: false
+                description: "Whether to enable TLS mutual auth, requires TLS enabled"
+                type: "bool"
+            activemq_tls_truststore_path:
+                # line 64 of defaults/main.yml
+                default: None
+                description: "Truststore to use for TLS mutual authentication"
+                type: "str"
+            activemq_tls_truststore_password:
+                # line 65 of defaults/main.yml
+                default: None
+                description: "Password for truststore"
+                type: "str"
+            activemq_tls_truststore_dest:
+                # line 66 of defaults/main.yml
+                default: "{{ activemq_dest }}/{{ activemq_instance_name }}/etc/trust.ks"
+                description: "Path for installation of truststore"
+                type: "str"
+            activemq_nio_enabled:
+                # line 69 of defaults/main.yml
+                default: false
+                description: "Enable Native IO using libaio"
+                type: "bool"
+            activemq_shared_storage:
+                # line 72 of defaults/main.yml
+                default: false
+                description: "Use shared filesystem directory for storage"
+                type: "bool"
+            activemq_shared_storage_path:
+                default: "{{ activemq_dest }}/{{ activemq_instance_name }}/data/shared"
+                description: "Absolute path of shared directory"
+                type: "str"
+            activemq_shared_storage_mounted:
+                default: True
+                description: "Whether the systemd unit must require a mounted path (only when using shared storage)"
+                type: "bool"
+            activemq_ports_offset_enabled:
+                # line 75 of defaults/main.yml
+                default: false
+                description: "Whether to enable port offset"
+                type: "bool"
+            activemq_ports_offset:
+                # line 76 of defaults/main.yml
+                default: 0
+                description: "Port offset for all default ports"
+                type: "int"
+            activemq_disable_destination_autocreate:
+                # line 79 of defaults/main.yml
+                default: true
+                description: "Disable automatic creation of destination"
+                type: "bool"
+            activemq_queues:
+                # line 80 of defaults/main.yml
+                default: "queue.in,queue.out"
+                description: "Queue names comma separated"
+                type: "str"
+            activemq_disable_amqp_protocol:
+                # line 83 of defaults/main.yml
+                default: false
+                description: "Whether to disable AMQP protocol"
+                type: "bool"
+            activemq_disable_hornetq_protocol:
+                # line 84 of defaults/main.yml
+                default: false
+                description: "Whether to disable HORNETQ protocol"
+                type: "bool"
+            activemq_disable_mqtt_protocol:
+                # line 85 of defaults/main.yml
+                default: false
+                description: "Whether to disable MQTT protocol"
+                type: "bool"
+            activemq_disable_stomp_protocol:
+                # line 86 of defaults/main.yml
+                default: false
+                description: "Whether to disable STOMP protocol"
+                type: "bool"
+            activemq_enable_audit:
+                default: False
+                description: "Whether to enable audit file logging"
+                type: "bool"
+            activemq_logger_level:
+                description: "Root logging level"
+                default: 'INFO'
+                type: "str"
+            activemq_logger_core_server_level:
+                description: "Logging level for org.apache.activemq.artemis.core.server "
+                default: 'INFO'
+                type: "str"
+            activemq_logger_journal_level:
+                description: "Logging level for org.apache.activemq.artemis.journal"
+                default: 'INFO'
+                type: "str"
+            activemq_logger_utils_level:
+                description: "Logging level for org.apache.activemq.artemis.utils"
+                default: 'INFO'
+                type: "str"
+            activemq_logger_utils_critical_level:
+                description: "Logging level for org.apache.activemq.artemis.utils.critical"
+                default: 'INFO'
+                type: "str"
+            activemq_logger_jms_level:
+                description: "Logging level for org.apache.activemq.artemis.jms"
+                default: 'INFO'
+                type: "str"
+            activemq_logger_integration_bootstrap_level:
+                description: "Logging level for org.apache.activemq.artemis.integration.bootstrap"
+                default: 'INFO'
+                type: "str"
+            activemq_logger_jetty_level:
+                description: "Logging level for org.eclipse.jetty"
+                default: 'WARN'
+                type: "str"
+            activemq_logger_curator_level:
+                description: "Logging level for org.apache.curator"
+                default: 'WARN'
+                type: "str"
+            activemq_logger_zookeeper_level:
+                description: "Logging level for org.apache.zookeeper"
+                default: 'ERROR'
+                type: "str"
+            activemq_jmx_exporter_port:
+                default: 18080
+                type: "int"
+                description: "Port for prometheus JMX exporter to listen"
+            activemq_jmx_exporter_config_path:
+                default: "{{ activemq_dest }}/{{ activemq_instance_name }}/etc/jmx_exporter.yml"
+                type: "str"
+                description: "JMX exporter configuration path"
+            activemq_jmx_exporter_enabled:
+                description: "Enable install and configuration of prometheus-jmx-exporter"
+                default: False
+                type: "bool"
+            activemq_prometheus_enabled:
+                description: "Enable install and configuration of prometheus metrics plugin"
+                default: False
+                type: "bool"
+            activemq_users:
+                description: "List of users to create with roles; user is not created if password empty. List of (user,password,roles) dicts"
+                default: "{{ activemq_instance_username }}/{{ activemq_instance_password }} with default admin 'amq' role"
+                type: "list"
+            activemq_roles:
+                description: "List of roles to create. List of (role,permissions) dicts where permissions is a list of amq broker permissions"
+                default: "Administrative role 'amq'"
+                type: "list"
+            activemq_name:
+                description: 'Human friendly name for service'
+                default: "Apache ActiveMQ"
+                type: "str"
+            activemq_service_name:
+                description: "Systemd unit name"
+                default: "activemq"
+                type: "str"
+            activemq_local_archive_repository:
+                description: "Path local to controller for offline/download of install archives"
+                default: "{{ lookup('env', 'PWD') }}"
+                type: "str"
+            activemq_hawtio_role:
+                description: "Artemis role for hawtio console access"
+                default: "amq"
+                type: "str"
+            activemq_cors_allow_origin:
+                description: "List of CORS allow origin setting for jolokia"
+                default: "[ *://0.0.0.0* ]"
+                type: "list"
+            activemq_cors_strict_checking:
+                description: "Whether to enforce strict checking for CORS"
+                default: True
+                type: "bool"
+            activemq_management_access_default:
+                description: "management console access methods for roles activemq_hawtio_role"
+                default: "[ 'list*', 'get*', 'is*', 'set*', 'browse*', 'count*', '*' ]"
+                type: "list"
+            activemq_management_access_domains:
+                description: "Management console access methods per domain for roles activemq_hawtio_role"
+                default: "Access for java.lang and org.apache.artemis.activemq"
+                type: "list"
+            activemq_acceptors:
+                description: "Acceptors configuration; list of `{ name, bind_address, bind_port, parameters(dict) }`"
+                default: "Generate same configuration as `artemis create`"
+                type: "list"
+            activemq_connectors:
+                description: "Connectors configuration; list of `{ name, address, port, parameters(dict) }`"
+                default: "Generate same configuration as `artemis create`"
+                type: "list"
+            activemq_address_settings:
+                description: "Address settings configuration; list of `{ match address string, and parameters(dict) }`"
+                default: "Generate same configuration as `artemis create`"
+                type: "list"
+            activemq_addresses:
+                description: "Address/queue configuration; list of `{ name, [anycast|multicast], and parameters }`"
+                default: "Generate same configuration as `artemis create`"
+                type: "list"
+            activemq_diverts:
+                description: "Diverts configuration; list of `{ name with parameters }`"
+                default: "[]"
+                type: "list"
+            activemq_service_override_template:
+                description: "Filename of custom systemd unit template to be deployed"
+                default: ""
+                type: "str"
+            activemq_persistence_enabled:
+                default: True
+                type: 'bool'
+                description: "Whether to use the file based journal for persistence"
+            activemq_persist_id_cache:
+                description: 'Whether to persist cache IDs to the journal'
+                default: True
+                type: 'bool'
+            activemq_id_cache_size:
+                description: 'The duplicate detection circular cache size'
+                default: 20000
+                type: 'int'
+            activemq_journal_type:
+                default: 'ASYNCIO'
+                description: 'Journal type, valid values are [ ASYNCIO: libaio, MAPPED: mmap files, NIO: Plain Java Files  ]'
+                type: "str"
+            activemq_paging_directory:
+                description: 'The directory to store paged messages in'
+                default: 'data/paging'
+                type: "str"
+            activemq_bindings_directory:
+                description: 'The folder in use for the bindings folder'
+                default: 'data/bindings'
+                type: "str"
+            activemq_journal_directory:
+                description: 'The directory to store the journal files in'
+                default: 'data/journal'
+                type: "str"
+            activemq_large_messages_directory:
+                description: 'The directory to store large messages'
+                default: 'data/largemessages'
+                type: "str"
+            activemq_journal_datasync:
+                description: 'Whether to use msync/fsync on journal operations'
+                default: True
+                type: 'bool'
+            activemq_journal_min_files:
+                description: 'How many journal files to pre-create'
+                default: 2
+                type: "int"
+            activemq_journal_pool_files:
+                description: 'The upper threshold of the journal file pool, -1 means no Limit'
+                default: -1
+                type: "int"
+            activemq_journal_device_block_size:
+                description: 'The block size by the device'
+                default: 4096
+                type: "int"
+            activemq_journal_file_size:
+                description: 'The size (in bytes) of each journal file'
+                default: '10M'
+                type: "str"
+            activemq_journal_buffer_timeout:
+                description: 'The Flush timeout for the journal buffer'
+                default: "{{ 500000 if activemq_journal_type == 'ASYNCIO' else 3333333 }}"
+                type: "int"
+            activemq_journal_max_io:
+                description: 'The maximum number of write requests that can be in the ASYNCIO queue at any one time'
+                default: "{{ 4096 if activemq_journal_type == 'ASYNCIO' else 1 }}"
+                type: "int"
+            activemq_db_jdbc_url:
+                description: 'The full JDBC connection URL for your database server'
+                default: 'jdbc:derby:target/derby/database-store;create=true'
+                type: "str"
+            activemq_db_bindings_table:
+                description: 'The name of the table in which bindings data will be persisted'
+                default: 'BINDINGS_TABLE'
+                type: "str"
+            activemq_db_message_table:
+                description: 'The name of the table in which bindings data will be persisted'
+                default: 'MESSAGE_TABLE'
+                type: "str"
+            activemq_db_large_message_table:
+                description: 'The name of the table in which messages and related data will be persisted'
+                default: 'LARGE_MESSAGES_TABLE'
+                type: "str"
+            activemq_db_jdbc_driver_class:
+                description: 'The fully qualified class name of the desired database Driver'
+                default: 'org.apache.derby.jdbc.EmbeddedDriver'
+                type: "str"
+            activemq_systemd_wait_for_port:
+                description: 'Whether systemd unit should wait for activemq port before returning'
+                default: "{{ activemq_ha_enabled and not activemq_shared_storage }}"
+                type: 'bool'
+            activemq_systemd_wait_for_log:
+                description: 'Whether systemd unit should wait for service to be up in logs'
+                default: "{{ activemq_ha_enabled and activemq_shared_storage }}"
+                type: 'bool'
+            activemq_configuration_file_refresh_period:
+                description: 'Periodic refresh of configuration in milliseconds; can be disabled by specifying -1'
+                default: 5000
+                type: 'int'
+            activemq_data_directory:
+                description: "The activemq data directory path"
+                default: "{{ activemq_shared_storage_path if activemq_shared_storage else activemq_dest + '/' + activemq_instance_name  + '/data' }}"
+                type: 'str'
+            activemq_jmx_exporter_package:
+                description: "The rpm package name providing JMX exporter"
+                default: "prometheus-jmx-exporter-openjdk11"
+                type: 'str'
+            activemq_base_package_list:
+                description: "The base list of rpm dependencies to install"
+                default: "[unzip,iproute,sed,procps-ng,initscripts,libaio,lxml]"
+                type: 'list'
+    downstream:
+        options:
+            amq_broker_version:
+                default: "7.9.4"
+                description: "Red Hat AMQ Broker version"
+                type: "str"
+            amq_broker_product_category:
+                default: "jboss.amq.broker"
+                description: "JBossNetwork API category for amq_broker"
+                type: "str"
+            amq_broker_enable:
+                default: True
+                description: "Enable installation of Red Hat AMQ Broker"
+                type: "bool"
+            amq_broker_offline_install:
+                default: False
+                description: "Perform an offline installation"
+                type: "bool"
+            amq_broker_archive:
+                # line 11 of defaults/main.yml
+                default: "amq-broker-{{ amq_broker_version }}-bin.zip"
+                description: "Red Hat AMQ Broker install archive filename"
+                type: "str"
+            amq_broker_installdir:
+                # line 12 of defaults/main.yml
+                default: "{{ amq_broker_dest }}/amq-broker-{{ amq_broker_version }}"
+                description: "Red Hat AMQ Broker installation path"
+                type: "str"
+            amq_broker_dest:
+                default: "/opt/amq"
+                description: "Root installation directory"
+                type: "str"
+            amq_broker_name:
+                description: "Human friendly name for service"
+                default: "Red Hat AMQ Broker"
+                type: "str"
+            amq_broker_service_name:
+                description: "Systemd unit name"
+                default: "amq_broker"
+                type: "str"
