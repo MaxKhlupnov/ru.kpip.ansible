@@ -1,0 +1,1280 @@
+ansible-playbook [core 2.14.3]
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/home/makhlu/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  ansible collection location = /home/makhlu/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/bin/ansible-playbook
+  python version = 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] (/usr/bin/python3)
+  jinja version = 3.0.3
+  libyaml = True
+Using /etc/ansible/ansible.cfg as config file
+host_list declined parsing /mnt/c/PROJECTS/GitHub/ru.kpip.ansible/ecm_inventory.txt as it did not pass its verify_file() method
+auto declined parsing /mnt/c/PROJECTS/GitHub/ru.kpip.ansible/ecm_inventory.txt as it did not pass its verify_file() method
+yaml declined parsing /mnt/c/PROJECTS/GitHub/ru.kpip.ansible/ecm_inventory.txt as it did not pass its verify_file() method
+Parsed /mnt/c/PROJECTS/GitHub/ru.kpip.ansible/ecm_inventory.txt inventory source with ini plugin
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+
+PLAYBOOK: ecm_adapter.ansible.yml **********************************************
+1 plays in ecm_adapter.ansible.yml
+
+PLAY [Playbook for ActiveMQ Artemis] *******************************************
+
+TASK [Gathering Facts] *********************************************************
+task path: /mnt/c/PROJECTS/GitHub/ru.kpip.ansible/ecm_adapter.ansible.yml:1
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651392.4087422-541-229682347670409 `" && echo ansible-tmp-1679651392.4087422-541-229682347670409="` echo /home/makhlu/ansible-tmp-1679651392.4087422-541-229682347670409 `" ) && sleep 0'"'"''
+<84.201.156.163> (0, b'ansible-tmp-1679651392.4087422-541-229682347670409=/home/makhlu/ansible-tmp-1679651392.4087422-541-229682347670409\n', b'')
+<ecm_adapter_ubuntu> Attempting python interpreter discovery
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'echo PLATFORM; uname; echo FOUND; command -v '"'"'"'"'"'"'"'"'python3.11'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.10'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.9'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.8'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.7'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.6'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.5'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/bin/python3'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/libexec/platform-python'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python2.7'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/bin/python'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python'"'"'"'"'"'"'"'"'; echo ENDFOUND && sleep 0'"'"''
+<84.201.156.163> (0, b'PLATFORM\nLinux\nFOUND\n/usr/bin/python3.10\n/usr/bin/python3\nENDFOUND\n', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'/usr/bin/python3.10 && sleep 0'"'"''
+<84.201.156.163> (0, b'{"platform_dist_result": [], "osrelease_content": "PRETTY_NAME=\\"Ubuntu 22.04.1 LTS\\"\\nNAME=\\"Ubuntu\\"\\nVERSION_ID=\\"22.04\\"\\nVERSION=\\"22.04.1 LTS (Jammy Jellyfish)\\"\\nVERSION_CODENAME=jammy\\nID=ubuntu\\nID_LIKE=debian\\nHOME_URL=\\"https://www.ubuntu.com/\\"\\nSUPPORT_URL=\\"https://help.ubuntu.com/\\"\\nBUG_REPORT_URL=\\"https://bugs.launchpad.net/ubuntu/\\"\\nPRIVACY_POLICY_URL=\\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\\"\\nUBUNTU_CODENAME=jammy\\n"}\n', b'')
+Using module file /usr/lib/python3/dist-packages/ansible/modules/setup.py
+<84.201.156.163> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmph2hhj5zs TO /home/makhlu/ansible-tmp-1679651392.4087422-541-229682347670409/AnsiballZ_setup.py
+<84.201.156.163> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' '[84.201.156.163]'
+<84.201.156.163> (0, b'sftp> put /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmph2hhj5zs /home/makhlu/ansible-tmp-1679651392.4087422-541-229682347670409/AnsiballZ_setup.py\n', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'chmod u+x /home/makhlu/ansible-tmp-1679651392.4087422-541-229682347670409/ /home/makhlu/ansible-tmp-1679651392.4087422-541-229682347670409/AnsiballZ_setup.py && sleep 0'"'"''
+<84.201.156.163> (0, b'', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' -tt 84.201.156.163 '/bin/sh -c '"'"'/usr/bin/python3 /home/makhlu/ansible-tmp-1679651392.4087422-541-229682347670409/AnsiballZ_setup.py && sleep 0'"'"''
+<84.201.156.163> (0, b'\r\n{"ansible_facts": {"ansible_system": "Linux", "ansible_kernel": "5.15.0-58-generic", "ansible_kernel_version": "#64-Ubuntu SMP Thu Jan 5 11:43:13 UTC 2023", "ansible_machine": "x86_64", "ansible_python_version": "3.10.6", "ansible_fqdn": "amq-2.ru-central1.internal", "ansible_hostname": "amq-2", "ansible_nodename": "amq-2", "ansible_domain": "ru-central1.internal", "ansible_userspace_bits": "64", "ansible_architecture": "x86_64", "ansible_userspace_architecture": "x86_64", "ansible_machine_id": "23000007c6d598f85a51ea5bbf4e0902", "ansible_system_capabilities_enforced": "True", "ansible_system_capabilities": [""], "ansible_user_id": "makhlu", "ansible_user_uid": 1000, "ansible_user_gid": 1001, "ansible_user_gecos": "", "ansible_user_dir": "/home/makhlu", "ansible_user_shell": "/bin/bash", "ansible_real_user_id": 1000, "ansible_effective_user_id": 1000, "ansible_real_group_id": 1001, "ansible_effective_group_id": 1001, "ansible_fibre_channel_wwn": [], "ansible_processor": ["0", "GenuineIntel", "Intel Xeon Processor (Icelake)", "1", "GenuineIntel", "Intel Xeon Processor (Icelake)"], "ansible_processor_count": 1, "ansible_processor_cores": 1, "ansible_processor_threads_per_core": 2, "ansible_processor_vcpus": 2, "ansible_processor_nproc": 2, "ansible_memtotal_mb": 1974, "ansible_memfree_mb": 798, "ansible_swaptotal_mb": 0, "ansible_swapfree_mb": 0, "ansible_memory_mb": {"real": {"total": 1974, "used": 1176, "free": 798}, "nocache": {"free": 1744, "used": 230}, "swap": {"total": 0, "free": 0, "used": 0, "cached": 0}}, "ansible_bios_date": "04/01/2014", "ansible_bios_vendor": "SeaBIOS", "ansible_bios_version": "1.11.1-1", "ansible_board_asset_tag": "NA", "ansible_board_name": "xeon-gold-6338", "ansible_board_serial": "NA", "ansible_board_vendor": "Yandex", "ansible_board_version": "pc-q35-yc-2.12", "ansible_chassis_asset_tag": "NA", "ansible_chassis_serial": "NA", "ansible_chassis_vendor": "Yandex", "ansible_chassis_version": "xeon-gold-6338", "ansible_form_factor": "Other", "ansible_product_name": "xeon-gold-6338", "ansible_product_serial": "NA", "ansible_product_uuid": "NA", "ansible_product_version": "pc-q35-yc-2.12", "ansible_system_vendor": "Yandex", "ansible_devices": {"loop1": {"virtual": 1, "links": {"ids": [], "uuids": [], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "4096", "partitions": {}, "rotational": "1", "scheduler_mode": "none", "sectors": "163736", "sectorsize": "512", "size": "79.95 MB", "host": "", "holders": []}, "loop6": {"virtual": 1, "links": {"ids": [], "uuids": [], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "0", "partitions": {}, "rotational": "1", "scheduler_mode": "none", "sectors": "0", "sectorsize": "512", "size": "0.00 Bytes", "host": "", "holders": []}, "loop4": {"virtual": 1, "links": {"ids": [], "uuids": [], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "4096", "partitions": {}, "rotational": "1", "scheduler_mode": "none", "sectors": "129672", "sectorsize": "512", "size": "63.32 MB", "host": "", "holders": []}, "loop2": {"virtual": 1, "links": {"ids": [], "uuids": [], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "4096", "partitions": {}, "rotational": "1", "scheduler_mode": "none", "sectors": "0", "sectorsize": "512", "size": "0.00 Bytes", "host": "", "holders": []}, "loop0": {"virtual": 1, "links": {"ids": [], "uuids": [], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "4096", "partitions": {}, "rotational": "1", "scheduler_mode": "none", "sectors": "126760", "sectorsize": "512", "size": "61.89 MB", "host": "", "holders": []}, "loop7": {"virtual": 1, "links": {"ids": [], "uuids": [], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "0", "partitions": {}, "rotational": "1", "scheduler_mode": "none", "sectors": "0", "sectorsize": "512", "size": "0.00 Bytes", "host": "", "holders": []}, "loop5": {"virtual": 1, "links": {"ids": [], "uuids": [], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "4096", "partitions": {}, "rotational": "1", "scheduler_mode": "none", "sectors": "229272", "sectorsize": "512", "size": "111.95 MB", "host": "", "holders": []}, "vda": {"virtual": 1, "links": {"ids": ["virtio-fhmflu4jv78gnhs00khb"], "uuids": [], "labels": [], "masters": []}, "vendor": "0x1af4", "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "0", "partitions": {"vda2": {"links": {"ids": ["virtio-fhmflu4jv78gnhs00khb-part2"], "uuids": ["82aeea96-6d42-49e6-85d5-9071d3c9b6aa"], "labels": [], "masters": []}, "start": "4096", "sectors": "31453151", "sectorsize": 512, "size": "15.00 GB", "uuid": "82aeea96-6d42-49e6-85d5-9071d3c9b6aa", "holders": []}, "vda1": {"links": {"ids": ["virtio-fhmflu4jv78gnhs00khb-part1"], "uuids": [], "labels": [], "masters": []}, "start": "2048", "sectors": "2048", "sectorsize": 512, "size": "1.00 MB", "uuid": null, "holders": []}}, "rotational": "1", "scheduler_mode": "none", "sectors": "31457280", "sectorsize": "512", "size": "15.00 GB", "host": "SCSI storage controller: Red Hat, Inc. Virtio block device", "holders": []}, "loop3": {"virtual": 1, "links": {"ids": [], "uuids": [], "labels": [], "masters": []}, "vendor": null, "model": null, "sas_address": null, "sas_device_handle": null, "removable": "0", "support_discard": "4096", "partitions": {}, "rotational": "1", "scheduler_mode": "none", "sectors": "102072", "sectorsize": "512", "size": "49.84 MB", "host": "", "holders": []}}, "ansible_device_links": {"ids": {"vda2": ["virtio-fhmflu4jv78gnhs00khb-part2"], "vda1": ["virtio-fhmflu4jv78gnhs00khb-part1"], "vda": ["virtio-fhmflu4jv78gnhs00khb"]}, "uuids": {"vda2": ["82aeea96-6d42-49e6-85d5-9071d3c9b6aa"]}, "labels": {}, "masters": {}}, "ansible_uptime_seconds": 3127, "ansible_lvm": "N/A", "ansible_mounts": [{"mount": "/", "device": "/dev/vda2", "fstype": "ext4", "options": "rw,relatime", "size_total": 15758004224, "size_available": 10973978624, "block_size": 4096, "block_total": 3847169, "block_available": 2679194, "block_used": 1167975, "inode_total": 983040, "inode_available": 865847, "inode_used": 117193, "uuid": "82aeea96-6d42-49e6-85d5-9071d3c9b6aa"}, {"mount": "/snap/lxd/22923", "device": "/dev/loop1", "fstype": "squashfs", "options": "ro,nodev,relatime,errors=continue", "size_total": 83886080, "size_available": 0, "block_size": 131072, "block_total": 640, "block_available": 0, "block_used": 640, "inode_total": 816, "inode_available": 0, "inode_used": 816, "uuid": "N/A"}, {"mount": "/snap/core20/1405", "device": "/dev/loop0", "fstype": "squashfs", "options": "ro,nodev,relatime,errors=continue", "size_total": 65011712, "size_available": 0, "block_size": 131072, "block_total": 496, "block_available": 0, "block_used": 496, "inode_total": 11778, "inode_available": 0, "inode_used": 11778, "uuid": "N/A"}, {"mount": "/snap/snapd/18596", "device": "/dev/loop3", "fstype": "squashfs", "options": "ro,nodev,relatime,errors=continue", "size_total": 52297728, "size_available": 0, "block_size": 131072, "block_total": 399, "block_available": 0, "block_used": 399, "inode_total": 498, "inode_available": 0, "inode_used": 498, "uuid": "N/A"}, {"mount": "/snap/core20/1852", "device": "/dev/loop4", "fstype": "squashfs", "options": "ro,nodev,relatime,errors=continue", "size_total": 66453504, "size_available": 0, "block_size": 131072, "block_total": 507, "block_available": 0, "block_used": 507, "inode_total": 11926, "inode_available": 0, "inode_used": 11926, "uuid": "N/A"}, {"mount": "/snap/lxd/24322", "device": "/dev/loop5", "fstype": "squashfs", "options": "ro,nodev,relatime,errors=continue", "size_total": 117440512, "size_available": 0, "block_size": 131072, "block_total": 896, "block_available": 0, "block_used": 896, "inode_total": 873, "inode_available": 0, "inode_used": 873, "uuid": "N/A"}], "ansible_lsb": {"id": "Ubuntu", "description": "Ubuntu 22.04.1 LTS", "release": "22.04", "codename": "jammy", "major_release": "22"}, "ansible_ssh_host_key_dsa_public": "AAAAB3NzaC1kc3MAAACBAOIz+9jGzdTi3lzpiXU5FpoRTF2qSuVThz1VvImUQfM/W2McZ8Mg0nmp9tDG65KlfEl9gbO2wMuxnC+UYAZBg9ph8A+36mfvRXdXyTBcSwZIhzVmSiqBGei2F8T3OQfUyAGhyk7rxoL2btqMcawhs6uoJUFAZXtj2Lyk+xyVnBtbAAAAFQD5Gq5QzGWbyQiRGlsA8Gbvmisx5wAAAIEArXJpkmSvAhYI3L5/MniibIShEjRGKhcLZRzBUbDuUgRbZtGHjJxcF/7gNdeNSImmSKpuVHS3Ibln8jdW8eBHSZ91RAlmxSMv2EChKrh2Eyro4gBClY0tUry9xQjccbUPOBd0MxC3Dr3HNbgPpQBNP+00LNniRtfZC1VlY6CJ56wAAACAXRqIJsuaGc//M21Z+7MeUGBC/mAOZyz7h5Sicomo/DCsbW4w9vkj108Gg6SWLVK/ZDWj2TK+/GlR8hgW5BdLU90quXM9oJOGRiwPSNAFcOP7VSjM82AhaJ68lV44f5kpn8ElJUaPA5TbNEZooMjuiT6fMsltzM0rusHtcwIr5FU=", "ansible_ssh_host_key_dsa_public_keytype": "ssh-dss", "ansible_ssh_host_key_rsa_public": "AAAAB3NzaC1yc2EAAAADAQABAAABgQCrt3iCMtKJpdVA/p+0DtdKsEcIt0SavsopHmSuKA8lpizd9Nc0Ppv8dtsmNR6QP5Sv9wagQrnFy9+3eQv+1ihP36AM8rjdPbWTbmsvITk/9CCvIyBaQMQV1k2lggGI7yitv782ggmgR8VgdOzOxWh47WvyqDi+dtW00loiJhmAqQdN+O0WO8msyD6TQfX7XWYfz3p5hH42YRWEh8OieYSjdPycesEq9KSUy/mvnc857k57qFd3MUEynDrZZ6++r6VKo7FdsLtFDmdshZ5TobyuyiTS3sSjXtyNrdSBGGld5ja6xTjTkXmFstru3QeAshwoY8anmPXk9i76/s7EWrngIsRV/4GbfafxQ5Dr/xk90rdrAfm7etpRdgXSAOGy86kk//mdiWgzJy63jdgM6wtf4JWFevtBOZ2wltCSVQp211xUhy3tBPMW83PUk89Wp2xXHEczgHCms+3OUA2KA8qSf4tu363yDwCFMS11n4Zk/jsh7bQS5CNGWTmqGn3WSl8=", "ansible_ssh_host_key_rsa_public_keytype": "ssh-rsa", "ansible_ssh_host_key_ecdsa_public": "AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBYzR9PMCC7dCLbptjWqIKm/nGeJdjJFs8mdV/IhHusFgb/Nipgkvhgz9Nn7qSN0HK3Oo/NOSHxa242bIKlpNvI=", "ansible_ssh_host_key_ecdsa_public_keytype": "ecdsa-sha2-nistp256", "ansible_ssh_host_key_ed25519_public": "AAAAC3NzaC1lZDI1NTE5AAAAIBnKKe2GfFTNpmlkqxUM9NkI2GE0TfqPP4B1dLXwdUUQ", "ansible_ssh_host_key_ed25519_public_keytype": "ssh-ed25519", "ansible_loadavg": {"1m": 0.0, "5m": 0.0, "15m": 0.0}, "ansible_dns": {"nameservers": ["127.0.0.53"], "options": {"edns0": true, "trust-ad": true}, "search": ["ru-central1.internal", "auto.internal"]}, "ansible_python": {"version": {"major": 3, "minor": 10, "micro": 6, "releaselevel": "final", "serial": 0}, "version_info": [3, 10, 6, "final", 0], "executable": "/usr/bin/python3", "has_sslcontext": true, "type": "cpython"}, "ansible_distribution": "Ubuntu", "ansible_distribution_release": "jammy", "ansible_distribution_version": "22.04", "ansible_distribution_major_version": "22", "ansible_distribution_file_path": "/etc/os-release", "ansible_distribution_file_variety": "Debian", "ansible_distribution_file_parsed": true, "ansible_os_family": "Debian", "ansible_date_time": {"year": "2023", "month": "03", "weekday": "Friday", "weekday_number": "5", "weeknumber": "12", "day": "24", "hour": "09", "minute": "49", "second": "52", "epoch": "1679651392", "epoch_int": "1679651392", "date": "2023-03-24", "time": "09:49:52", "iso8601_micro": "2023-03-24T09:49:52.549374Z", "iso8601": "2023-03-24T09:49:52Z", "iso8601_basic": "20230324T094952549374", "iso8601_basic_short": "20230324T094952", "tz": "UTC", "tz_dst": "UTC", "tz_offset": "+0000"}, "ansible_local": {}, "ansible_cmdline": {"BOOT_IMAGE": "/boot/vmlinuz-5.15.0-58-generic", "root": "UUID=82aeea96-6d42-49e6-85d5-9071d3c9b6aa", "ro": true, "net.ifnames": "0", "biosdevname": "0", "console": "ttyS0"}, "ansible_proc_cmdline": {"BOOT_IMAGE": "/boot/vmlinuz-5.15.0-58-generic", "root": "UUID=82aeea96-6d42-49e6-85d5-9071d3c9b6aa", "ro": true, "net.ifnames": "0", "biosdevname": "0", "console": "ttyS0"}, "ansible_hostnqn": "", "ansible_is_chroot": false, "ansible_fips": false, "ansible_iscsi_iqn": "", "ansible_apparmor": {"status": "enabled"}, "ansible_selinux_python_present": true, "ansible_selinux": {"status": "disabled"}, "ansible_virtualization_type": "NA", "ansible_virtualization_role": "NA", "ansible_virtualization_tech_guest": [], "ansible_virtualization_tech_host": [], "ansible_env": {"USER": "makhlu", "SSH_CLIENT": "212.73.103.21 27417 22", "XDG_SESSION_TYPE": "tty", "SHLVL": "0", "MOTD_SHOWN": "pam", "HOME": "/home/makhlu", "SSH_TTY": "/dev/pts/0", "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus", "LOGNAME": "makhlu", "_": "/bin/sh", "XDG_SESSION_CLASS": "user", "TERM": "xterm-256color", "XDG_SESSION_ID": "4", "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin", "XDG_RUNTIME_DIR": "/run/user/1000", "LANG": "en_US.UTF-8", "SHELL": "/bin/bash", "PWD": "/home/makhlu", "SSH_CONNECTION": "212.73.103.21 27417 10.128.0.11 22"}, "ansible_interfaces": ["lo", "eth0"], "ansible_lo": {"device": "lo", "mtu": 65536, "active": true, "type": "loopback", "promisc": false, "ipv4": {"address": "127.0.0.1", "broadcast": "", "netmask": "255.0.0.0", "network": "127.0.0.0", "prefix": "8"}, "ipv6": [{"address": "::1", "prefix": "128", "scope": "host"}], "features": {"rx_checksumming": "on [fixed]", "tx_checksumming": "on", "tx_checksum_ipv4": "off [fixed]", "tx_checksum_ip_generic": "on [fixed]", "tx_checksum_ipv6": "off [fixed]", "tx_checksum_fcoe_crc": "off [fixed]", "tx_checksum_sctp": "on [fixed]", "scatter_gather": "on", "tx_scatter_gather": "on [fixed]", "tx_scatter_gather_fraglist": "on [fixed]", "tcp_segmentation_offload": "on", "tx_tcp_segmentation": "on", "tx_tcp_ecn_segmentation": "on", "tx_tcp_mangleid_segmentation": "on", "tx_tcp6_segmentation": "on", "generic_segmentation_offload": "on", "generic_receive_offload": "on", "large_receive_offload": "off [fixed]", "rx_vlan_offload": "off [fixed]", "tx_vlan_offload": "off [fixed]", "ntuple_filters": "off [fixed]", "receive_hashing": "off [fixed]", "highdma": "on [fixed]", "rx_vlan_filter": "off [fixed]", "vlan_challenged": "on [fixed]", "tx_lockless": "on [fixed]", "netns_local": "on [fixed]", "tx_gso_robust": "off [fixed]", "tx_fcoe_segmentation": "off [fixed]", "tx_gre_segmentation": "off [fixed]", "tx_gre_csum_segmentation": "off [fixed]", "tx_ipxip4_segmentation": "off [fixed]", "tx_ipxip6_segmentation": "off [fixed]", "tx_udp_tnl_segmentation": "off [fixed]", "tx_udp_tnl_csum_segmentation": "off [fixed]", "tx_gso_partial": "off [fixed]", "tx_tunnel_remcsum_segmentation": "off [fixed]", "tx_sctp_segmentation": "on", "tx_esp_segmentation": "off [fixed]", "tx_udp_segmentation": "on", "tx_gso_list": "on", "fcoe_mtu": "off [fixed]", "tx_nocache_copy": "off [fixed]", "loopback": "on [fixed]", "rx_fcs": "off [fixed]", "rx_all": "off [fixed]", "tx_vlan_stag_hw_insert": "off [fixed]", "rx_vlan_stag_hw_parse": "off [fixed]", "rx_vlan_stag_filter": "off [fixed]", "l2_fwd_offload": "off [fixed]", "hw_tc_offload": "off [fixed]", "esp_hw_offload": "off [fixed]", "esp_tx_csum_hw_offload": "off [fixed]", "rx_udp_tunnel_port_offload": "off [fixed]", "tls_hw_tx_offload": "off [fixed]", "tls_hw_rx_offload": "off [fixed]", "rx_gro_hw": "off [fixed]", "tls_hw_record": "off [fixed]", "rx_gro_list": "off", "macsec_hw_offload": "off [fixed]", "rx_udp_gro_forwarding": "off", "hsr_tag_ins_offload": "off [fixed]", "hsr_tag_rm_offload": "off [fixed]", "hsr_fwd_offload": "off [fixed]", "hsr_dup_offload": "off [fixed]"}, "timestamping": [], "hw_timestamp_filters": []}, "ansible_eth0": {"device": "eth0", "macaddress": "d0:0d:15:98:f8:5a", "mtu": 1500, "active": true, "module": "virtio_net", "type": "ether", "pciid": "virtio0", "speed": -1, "promisc": false, "ipv4": {"address": "10.128.0.11", "broadcast": "", "netmask": "255.255.255.0", "network": "10.128.0.0", "prefix": "24"}, "ipv6": [{"address": "fe80::d20d:15ff:fe98:f85a", "prefix": "64", "scope": "link"}], "features": {"rx_checksumming": "on [fixed]", "tx_checksumming": "on", "tx_checksum_ipv4": "off [fixed]", "tx_checksum_ip_generic": "on", "tx_checksum_ipv6": "off [fixed]", "tx_checksum_fcoe_crc": "off [fixed]", "tx_checksum_sctp": "off [fixed]", "scatter_gather": "on", "tx_scatter_gather": "on", "tx_scatter_gather_fraglist": "off [fixed]", "tcp_segmentation_offload": "on", "tx_tcp_segmentation": "on", "tx_tcp_ecn_segmentation": "on", "tx_tcp_mangleid_segmentation": "off", "tx_tcp6_segmentation": "on", "generic_segmentation_offload": "on", "generic_receive_offload": "on", "large_receive_offload": "off [fixed]", "rx_vlan_offload": "off [fixed]", "tx_vlan_offload": "off [fixed]", "ntuple_filters": "off [fixed]", "receive_hashing": "off [fixed]", "highdma": "on [fixed]", "rx_vlan_filter": "on [fixed]", "vlan_challenged": "off [fixed]", "tx_lockless": "off [fixed]", "netns_local": "off [fixed]", "tx_gso_robust": "on [fixed]", "tx_fcoe_segmentation": "off [fixed]", "tx_gre_segmentation": "off [fixed]", "tx_gre_csum_segmentation": "off [fixed]", "tx_ipxip4_segmentation": "off [fixed]", "tx_ipxip6_segmentation": "off [fixed]", "tx_udp_tnl_segmentation": "off [fixed]", "tx_udp_tnl_csum_segmentation": "off [fixed]", "tx_gso_partial": "off [fixed]", "tx_tunnel_remcsum_segmentation": "off [fixed]", "tx_sctp_segmentation": "off [fixed]", "tx_esp_segmentation": "off [fixed]", "tx_udp_segmentation": "off [fixed]", "tx_gso_list": "off [fixed]", "fcoe_mtu": "off [fixed]", "tx_nocache_copy": "off", "loopback": "off [fixed]", "rx_fcs": "off [fixed]", "rx_all": "off [fixed]", "tx_vlan_stag_hw_insert": "off [fixed]", "rx_vlan_stag_hw_parse": "off [fixed]", "rx_vlan_stag_filter": "off [fixed]", "l2_fwd_offload": "off [fixed]", "hw_tc_offload": "off [fixed]", "esp_hw_offload": "off [fixed]", "esp_tx_csum_hw_offload": "off [fixed]", "rx_udp_tunnel_port_offload": "off [fixed]", "tls_hw_tx_offload": "off [fixed]", "tls_hw_rx_offload": "off [fixed]", "rx_gro_hw": "on", "tls_hw_record": "off [fixed]", "rx_gro_list": "off", "macsec_hw_offload": "off [fixed]", "rx_udp_gro_forwarding": "off", "hsr_tag_ins_offload": "off [fixed]", "hsr_tag_rm_offload": "off [fixed]", "hsr_fwd_offload": "off [fixed]", "hsr_dup_offload": "off [fixed]"}, "timestamping": [], "hw_timestamp_filters": []}, "ansible_default_ipv4": {"gateway": "10.128.0.1", "interface": "eth0", "address": "10.128.0.11", "broadcast": "", "netmask": "255.255.255.0", "network": "10.128.0.0", "prefix": "24", "macaddress": "d0:0d:15:98:f8:5a", "mtu": 1500, "type": "ether", "alias": "eth0"}, "ansible_default_ipv6": {}, "ansible_all_ipv4_addresses": ["10.128.0.11"], "ansible_all_ipv6_addresses": ["fe80::d20d:15ff:fe98:f85a"], "ansible_pkg_mgr": "apt", "ansible_service_mgr": "systemd", "gather_subset": ["all"], "module_setup": true}, "invocation": {"module_args": {"gather_subset": ["all"], "gather_timeout": 10, "filter": [], "fact_path": "/etc/ansible/facts.d"}}}\r\n', b'Shared connection to 84.201.156.163 closed.\r\n')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'rm -f -r /home/makhlu/ansible-tmp-1679651392.4087422-541-229682347670409/ > /dev/null 2>&1 && sleep 0'"'"''
+<84.201.156.163> (0, b'', b'')
+ok: [ecm_adapter_ubuntu]
+
+TASK [middleware_automation.amq.activemq : Validating arguments against arg spec 'main'] ***
+task path: /mnt/c/PROJECTS/GitHub/ru.kpip.ansible/ecm_adapter.ansible.yml:1
+ok: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "msg": "The arg spec validation passed",
+    "validate_args_context": {
+        "argument_spec_name": "main",
+        "name": "activemq",
+        "path": "/home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq",
+        "type": "role"
+    }
+}
+
+TASK [middleware_automation.amq.activemq : Check prerequisites] ****************
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/main.yml:2
+included: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/prereqs.yml for ecm_adapter_ubuntu
+
+TASK [middleware_automation.amq.activemq : Clear internal templating variables] ***
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/prereqs.yml:10
+ok: [ecm_adapter_ubuntu] => {
+    "ansible_facts": {
+        "acceptors": [],
+        "address_settings": [],
+        "addresses": [],
+        "connectors": [],
+        "diverts": [],
+        "management_access_default": [],
+        "management_access_domains": [],
+        "masked_users": [],
+        "security_settings": []
+    },
+    "changed": false
+}
+
+TASK [middleware_automation.amq.activemq : Validate credentials] ***************
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/prereqs.yml:22
+ok: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "msg": "Installing activemq"
+}
+
+TASK [middleware_automation.amq.activemq : Validate TLS config] ****************
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/prereqs.yml:31
+skipping: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "skip_reason": "Conditional result was False"
+}
+
+TASK [middleware_automation.amq.activemq : Validate TLS mutual auth config] ****
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/prereqs.yml:40
+skipping: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "skip_reason": "Conditional result was False"
+}
+
+TASK [middleware_automation.amq.activemq : Check local download archive path] ***
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/prereqs.yml:50
+<localhost> ESTABLISH LOCAL CONNECTION FOR USER: makhlu
+<localhost> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651394.8747897-569-8624876797204 `" && echo ansible-tmp-1679651394.8747897-569-8624876797204="` echo /home/makhlu/ansible-tmp-1679651394.8747897-569-8624876797204 `" ) && sleep 0'
+Using module file /usr/lib/python3/dist-packages/ansible/modules/stat.py
+<localhost> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmpf5wvfao_ TO /home/makhlu/ansible-tmp-1679651394.8747897-569-8624876797204/AnsiballZ_stat.py
+<localhost> EXEC /bin/sh -c 'chmod u+x /home/makhlu/ansible-tmp-1679651394.8747897-569-8624876797204/ /home/makhlu/ansible-tmp-1679651394.8747897-569-8624876797204/AnsiballZ_stat.py && sleep 0'
+<localhost> EXEC /bin/sh -c '/usr/bin/python3 /home/makhlu/ansible-tmp-1679651394.8747897-569-8624876797204/AnsiballZ_stat.py && sleep 0'
+<localhost> EXEC /bin/sh -c 'rm -f -r /home/makhlu/ansible-tmp-1679651394.8747897-569-8624876797204/ > /dev/null 2>&1 && sleep 0'
+ok: [ecm_adapter_ubuntu -> localhost] => {
+    "changed": false,
+    "invocation": {
+        "module_args": {
+            "checksum_algorithm": "sha1",
+            "follow": false,
+            "get_attributes": true,
+            "get_checksum": true,
+            "get_md5": false,
+            "get_mime": true,
+            "path": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible"
+        }
+    },
+    "stat": {
+        "atime": 1679651393.206036,
+        "attr_flags": "",
+        "attributes": [],
+        "block_size": 4096,
+        "blocks": 0,
+        "charset": "binary",
+        "ctime": 1679651391.9246109,
+        "dev": 46,
+        "device_type": 0,
+        "executable": true,
+        "exists": true,
+        "gid": 1000,
+        "gr_name": "makhlu",
+        "inode": 3940649674043473,
+        "isblk": false,
+        "ischr": false,
+        "isdir": true,
+        "isfifo": false,
+        "isgid": false,
+        "islnk": false,
+        "isreg": false,
+        "issock": false,
+        "isuid": false,
+        "mimetype": "inode/directory",
+        "mode": "0777",
+        "mtime": 1679651391.9246109,
+        "nlink": 1,
+        "path": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible",
+        "pw_name": "makhlu",
+        "readable": true,
+        "rgrp": true,
+        "roth": true,
+        "rusr": true,
+        "size": 4096,
+        "uid": 1000,
+        "version": null,
+        "wgrp": true,
+        "woth": true,
+        "writeable": true,
+        "wusr": true,
+        "xgrp": true,
+        "xoth": true,
+        "xusr": true
+    }
+}
+
+TASK [middleware_automation.amq.activemq : Validate local download path] *******
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/prereqs.yml:57
+ok: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "msg": "Will download resource to controller path: /mnt/c/PROJECTS/GitHub/ru.kpip.ansible"
+}
+
+TASK [middleware_automation.amq.activemq : Make collection xsd available for validation] ***
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/prereqs.yml:68
+<localhost> ESTABLISH LOCAL CONNECTION FOR USER: makhlu
+<localhost> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651395.1971612-596-158029043935204 `" && echo ansible-tmp-1679651395.1971612-596-158029043935204="` echo /home/makhlu/ansible-tmp-1679651395.1971612-596-158029043935204 `" ) && sleep 0'
+Using module file /usr/lib/python3/dist-packages/ansible/modules/stat.py
+<localhost> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmp69bncvdl TO /home/makhlu/ansible-tmp-1679651395.1971612-596-158029043935204/AnsiballZ_stat.py
+<localhost> EXEC /bin/sh -c 'chmod u+x /home/makhlu/ansible-tmp-1679651395.1971612-596-158029043935204/ /home/makhlu/ansible-tmp-1679651395.1971612-596-158029043935204/AnsiballZ_stat.py && sleep 0'
+<localhost> EXEC /bin/sh -c '/usr/bin/python3 /home/makhlu/ansible-tmp-1679651395.1971612-596-158029043935204/AnsiballZ_stat.py && sleep 0'
+Using module file /usr/lib/python3/dist-packages/ansible/modules/file.py
+<localhost> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmp5o8tooja TO /home/makhlu/ansible-tmp-1679651395.1971612-596-158029043935204/AnsiballZ_file.py
+<localhost> EXEC /bin/sh -c 'chmod u+x /home/makhlu/ansible-tmp-1679651395.1971612-596-158029043935204/ /home/makhlu/ansible-tmp-1679651395.1971612-596-158029043935204/AnsiballZ_file.py && sleep 0'
+<localhost> EXEC /bin/sh -c '/usr/bin/python3 /home/makhlu/ansible-tmp-1679651395.1971612-596-158029043935204/AnsiballZ_file.py && sleep 0'
+<localhost> EXEC /bin/sh -c 'rm -f -r /home/makhlu/ansible-tmp-1679651395.1971612-596-158029043935204/ > /dev/null 2>&1 && sleep 0'
+ok: [ecm_adapter_ubuntu -> localhost] => {
+    "changed": false,
+    "checksum": "851bcda16b2fe385f2865a41aad78b2a9f769635",
+    "dest": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/artemis-configuration.xsd",
+    "diff": {
+        "after": {
+            "mode": "0644",
+            "path": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/artemis-configuration.xsd"
+        },
+        "before": {
+            "mode": "0777",
+            "path": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/artemis-configuration.xsd"
+        }
+    },
+    "gid": 1000,
+    "group": "makhlu",
+    "invocation": {
+        "module_args": {
+            "_diff_peek": null,
+            "_original_basename": "artemis-configuration-2.18.xsd",
+            "access_time": null,
+            "access_time_format": "%Y%m%d%H%M.%S",
+            "attributes": null,
+            "dest": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/artemis-configuration.xsd",
+            "follow": true,
+            "force": false,
+            "group": null,
+            "mode": 420,
+            "modification_time": null,
+            "modification_time_format": "%Y%m%d%H%M.%S",
+            "owner": null,
+            "path": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/artemis-configuration.xsd",
+            "recurse": false,
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "state": "file",
+            "unsafe_writes": false
+        }
+    },
+    "mode": "0777",
+    "owner": "makhlu",
+    "path": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/artemis-configuration.xsd",
+    "size": 210478,
+    "state": "file",
+    "uid": 1000
+}
+
+TASK [middleware_automation.amq.activemq : Make collection xml.xsd available for validation] ***
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/prereqs.yml:75
+<localhost> ESTABLISH LOCAL CONNECTION FOR USER: makhlu
+<localhost> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651395.6424901-629-29705356767445 `" && echo ansible-tmp-1679651395.6424901-629-29705356767445="` echo /home/makhlu/ansible-tmp-1679651395.6424901-629-29705356767445 `" ) && sleep 0'
+Using module file /usr/lib/python3/dist-packages/ansible/modules/stat.py
+<localhost> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmpd0unijud TO /home/makhlu/ansible-tmp-1679651395.6424901-629-29705356767445/AnsiballZ_stat.py
+<localhost> EXEC /bin/sh -c 'chmod u+x /home/makhlu/ansible-tmp-1679651395.6424901-629-29705356767445/ /home/makhlu/ansible-tmp-1679651395.6424901-629-29705356767445/AnsiballZ_stat.py && sleep 0'
+<localhost> EXEC /bin/sh -c '/usr/bin/python3 /home/makhlu/ansible-tmp-1679651395.6424901-629-29705356767445/AnsiballZ_stat.py && sleep 0'
+Using module file /usr/lib/python3/dist-packages/ansible/modules/file.py
+<localhost> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmpikh8mc14 TO /home/makhlu/ansible-tmp-1679651395.6424901-629-29705356767445/AnsiballZ_file.py
+<localhost> EXEC /bin/sh -c 'chmod u+x /home/makhlu/ansible-tmp-1679651395.6424901-629-29705356767445/ /home/makhlu/ansible-tmp-1679651395.6424901-629-29705356767445/AnsiballZ_file.py && sleep 0'
+<localhost> EXEC /bin/sh -c '/usr/bin/python3 /home/makhlu/ansible-tmp-1679651395.6424901-629-29705356767445/AnsiballZ_file.py && sleep 0'
+<localhost> EXEC /bin/sh -c 'rm -f -r /home/makhlu/ansible-tmp-1679651395.6424901-629-29705356767445/ > /dev/null 2>&1 && sleep 0'
+ok: [ecm_adapter_ubuntu -> localhost] => {
+    "changed": false,
+    "checksum": "cfbac8e894d9d744dc0130fd31f42caa43d10a43",
+    "dest": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/xml.xsd",
+    "diff": {
+        "after": {
+            "mode": "0644",
+            "path": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/xml.xsd"
+        },
+        "before": {
+            "mode": "0777",
+            "path": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/xml.xsd"
+        }
+    },
+    "gid": 1000,
+    "group": "makhlu",
+    "invocation": {
+        "module_args": {
+            "_diff_peek": null,
+            "_original_basename": "xml.xsd",
+            "access_time": null,
+            "access_time_format": "%Y%m%d%H%M.%S",
+            "attributes": null,
+            "dest": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/xml.xsd",
+            "follow": true,
+            "force": false,
+            "group": null,
+            "mode": 420,
+            "modification_time": null,
+            "modification_time_format": "%Y%m%d%H%M.%S",
+            "owner": null,
+            "path": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/xml.xsd",
+            "recurse": false,
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": null,
+            "state": "file",
+            "unsafe_writes": false
+        }
+    },
+    "mode": "0777",
+    "owner": "makhlu",
+    "path": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/xml.xsd",
+    "size": 4843,
+    "state": "file",
+    "uid": 1000
+}
+
+TASK [middleware_automation.amq.activemq : Ensure required packages are installed] ***
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/prereqs.yml:96
+included: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/fastpackages.yml for ecm_adapter_ubuntu
+
+TASK [middleware_automation.amq.activemq : Check if packages are already installed] ***
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/fastpackages.yml:4
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651396.1128852-664-60960939109851 `" && echo ansible-tmp-1679651396.1128852-664-60960939109851="` echo /home/makhlu/ansible-tmp-1679651396.1128852-664-60960939109851 `" ) && sleep 0'"'"''
+<84.201.156.163> (0, b'ansible-tmp-1679651396.1128852-664-60960939109851=/home/makhlu/ansible-tmp-1679651396.1128852-664-60960939109851\n', b'')
+Using module file /usr/lib/python3/dist-packages/ansible/modules/command.py
+<84.201.156.163> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmp6jh8io4j TO /home/makhlu/ansible-tmp-1679651396.1128852-664-60960939109851/AnsiballZ_command.py
+<84.201.156.163> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' '[84.201.156.163]'
+<84.201.156.163> (0, b'sftp> put /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmp6jh8io4j /home/makhlu/ansible-tmp-1679651396.1128852-664-60960939109851/AnsiballZ_command.py\n', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'chmod u+x /home/makhlu/ansible-tmp-1679651396.1128852-664-60960939109851/ /home/makhlu/ansible-tmp-1679651396.1128852-664-60960939109851/AnsiballZ_command.py && sleep 0'"'"''
+<84.201.156.163> (0, b'', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' -tt 84.201.156.163 '/bin/sh -c '"'"'/usr/bin/python3 /home/makhlu/ansible-tmp-1679651396.1128852-664-60960939109851/AnsiballZ_command.py && sleep 0'"'"''
+<84.201.156.163> (1, b'\r\n{"rc": 2, "stdout": "", "stderr": "", "cmd": "rpm -q unzip iproute sed procps-ng initscripts libaio lxml openjdk-11-jdk", "failed": true, "msg": "[Errno 2] No such file or directory: b\'rpm\'", "exception": "  File \\"/tmp/ansible_ansible.legacy.command_payload_8wjzop_p/ansible_ansible.legacy.command_payload.zip/ansible/module_utils/basic.py\\", line 2022, in run_command\\n    cmd = subprocess.Popen(args, **kwargs)\\n  File \\"/usr/lib/python3.10/subprocess.py\\", line 969, in __init__\\n    self._execute_child(args, executable, preexec_fn, close_fds,\\n  File \\"/usr/lib/python3.10/subprocess.py\\", line 1845, in _execute_child\\n    raise child_exception_type(errno_num, err_msg, err_filename)\\n", "invocation": {"module_args": {"_raw_params": "rpm -q unzip iproute sed procps-ng initscripts libaio lxml openjdk-11-jdk", "_uses_shell": false, "stdin_add_newline": true, "strip_empty_ends": true, "argv": null, "chdir": null, "executable": null, "creates": null, "removes": null, "stdin": null}}}\r\n', b'Shared connection to 84.201.156.163 closed.\r\n')
+<84.201.156.163> Failed to connect to the host via ssh: Shared connection to 84.201.156.163 closed.
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'rm -f -r /home/makhlu/ansible-tmp-1679651396.1128852-664-60960939109851/ > /dev/null 2>&1 && sleep 0'"'"''
+<84.201.156.163> (0, b'', b'')
+The full traceback is:
+  File "/tmp/ansible_ansible.legacy.command_payload_8wjzop_p/ansible_ansible.legacy.command_payload.zip/ansible/module_utils/basic.py", line 2022, in run_command
+    cmd = subprocess.Popen(args, **kwargs)
+  File "/usr/lib/python3.10/subprocess.py", line 969, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.10/subprocess.py", line 1845, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+fatal: [ecm_adapter_ubuntu]: FAILED! => {
+    "changed": true,
+    "cmd": "rpm -q unzip iproute sed procps-ng initscripts libaio lxml openjdk-11-jdk",
+    "invocation": {
+        "module_args": {
+            "_raw_params": "rpm -q unzip iproute sed procps-ng initscripts libaio lxml openjdk-11-jdk",
+            "_uses_shell": false,
+            "argv": null,
+            "chdir": null,
+            "creates": null,
+            "executable": null,
+            "removes": null,
+            "stdin": null,
+            "stdin_add_newline": true,
+            "strip_empty_ends": true
+        }
+    },
+    "msg": "[Errno 2] No such file or directory: b'rpm'",
+    "rc": 2,
+    "stderr": "",
+    "stderr_lines": [],
+    "stdout": "",
+    "stdout_lines": []
+}
+
+TASK [middleware_automation.amq.activemq : Add missing packages to the yum install list] ***
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/fastpackages.yml:10
+ok: [ecm_adapter_ubuntu] => {
+    "ansible_facts": {
+        "packages_to_install": []
+    },
+    "changed": false
+}
+
+TASK [middleware_automation.amq.activemq : Install packages: []] ***************
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/fastpackages.yml:15
+skipping: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "skip_reason": "Conditional result was False"
+}
+
+TASK [middleware_automation.amq.activemq : Validate broker configuration] ******
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/main.yml:7
+included: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/validate_config.yml for ecm_adapter_ubuntu
+
+TASK [middleware_automation.amq.activemq : Create address settings configuration string] ***
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/validate_config.yml:2
+ok: [ecm_adapter_ubuntu] => (item=activemq.management#) => {
+    "address_setting": {
+        "match": "activemq.management#",
+        "parameters": {
+            "address_full_policy": "PAGE",
+            "auto_create_addresses": true,
+            "auto_create_jms_queues": true,
+            "auto_create_jms_topics": true,
+            "auto_create_queues": true,
+            "dead_letter_address": "DLQ",
+            "expiry_address": "ExpiryQueue",
+            "max_size_bytes": -1,
+            "message_counter_history_day_limit": 10,
+            "redelivery_delay": 0
+        }
+    },
+    "ansible_facts": {
+        "validate_address_settings": [
+            "         <address-setting match=\"activemq.management#\">\n            <dead-letter-address>DLQ</dead-letter-address>\n            <expiry-address>ExpiryQueue</expiry-address>\n            <redelivery-delay>0</redelivery-delay>\n            <max-size-bytes>-1</max-size-bytes>\n            <message-counter-history-day-limit>10</message-counter-history-day-limit>\n            <address-full-policy>PAGE</address-full-policy>\n            <auto-create-queues>true</auto-create-queues>\n            <auto-create-addresses>true</auto-create-addresses>\n            <auto-create-jms-queues>true</auto-create-jms-queues>\n            <auto-create-jms-topics>true</auto-create-jms-topics>\n         </address-setting>\n"
+        ]
+    },
+    "ansible_loop_var": "address_setting",
+    "changed": false
+}
+ok: [ecm_adapter_ubuntu] => (item=#) => {
+    "address_setting": {
+        "match": "#",
+        "parameters": {
+            "address_full_policy": "PAGE",
+            "auto_create_addresses": false,
+            "auto_create_jms_queues": false,
+            "auto_create_jms_topics": false,
+            "auto_create_queues": false,
+            "auto_delete_addresses": false,
+            "auto_delete_queues": false,
+            "dead_letter_address": "DLQ",
+            "expiry_address": "ExpiryQueue",
+            "max_size_bytes": -1,
+            "message_counter_history_day_limit": 10,
+            "redelivery_delay": 0
+        }
+    },
+    "ansible_facts": {
+        "validate_address_settings": [
+            "         <address-setting match=\"activemq.management#\">\n            <dead-letter-address>DLQ</dead-letter-address>\n            <expiry-address>ExpiryQueue</expiry-address>\n            <redelivery-delay>0</redelivery-delay>\n            <max-size-bytes>-1</max-size-bytes>\n            <message-counter-history-day-limit>10</message-counter-history-day-limit>\n            <address-full-policy>PAGE</address-full-policy>\n            <auto-create-queues>true</auto-create-queues>\n            <auto-create-addresses>true</auto-create-addresses>\n            <auto-create-jms-queues>true</auto-create-jms-queues>\n            <auto-create-jms-topics>true</auto-create-jms-topics>\n         </address-setting>\n",
+            "         <address-setting match=\"#\">\n            <dead-letter-address>DLQ</dead-letter-address>\n            <expiry-address>ExpiryQueue</expiry-address>\n            <redelivery-delay>0</redelivery-delay>\n            <max-size-bytes>-1</max-size-bytes>\n            <message-counter-history-day-limit>10</message-counter-history-day-limit>\n            <address-full-policy>PAGE</address-full-policy>\n            <auto-create-queues>false</auto-create-queues>\n            <auto-create-addresses>false</auto-create-addresses>\n            <auto-create-jms-queues>false</auto-create-jms-queues>\n            <auto-create-jms-topics>false</auto-create-jms-topics>\n            <auto-delete-queues>false</auto-delete-queues>\n            <auto-delete-addresses>false</auto-delete-addresses>\n         </address-setting>\n"
+        ]
+    },
+    "ansible_loop_var": "address_setting",
+    "changed": false
+}
+
+TASK [middleware_automation.amq.activemq : Validate address settings] **********
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/validate_config.yml:10
+<localhost> ESTABLISH LOCAL CONNECTION FOR USER: makhlu
+<localhost> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651397.1503997-680-116539883283061 `" && echo ansible-tmp-1679651397.1503997-680-116539883283061="` echo /home/makhlu/ansible-tmp-1679651397.1503997-680-116539883283061 `" ) && sleep 0'
+Using module file /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/plugins/modules/xml.py
+<localhost> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmpm8cz2th3 TO /home/makhlu/ansible-tmp-1679651397.1503997-680-116539883283061/AnsiballZ_xml.py
+<localhost> EXEC /bin/sh -c 'chmod u+x /home/makhlu/ansible-tmp-1679651397.1503997-680-116539883283061/ /home/makhlu/ansible-tmp-1679651397.1503997-680-116539883283061/AnsiballZ_xml.py && sleep 0'
+<localhost> EXEC /bin/sh -c '/usr/bin/python3 /home/makhlu/ansible-tmp-1679651397.1503997-680-116539883283061/AnsiballZ_xml.py && sleep 0'
+<localhost> EXEC /bin/sh -c 'rm -f -r /home/makhlu/ansible-tmp-1679651397.1503997-680-116539883283061/ > /dev/null 2>&1 && sleep 0'
+ok: [ecm_adapter_ubuntu -> localhost] => {
+    "changed": false,
+    "invocation": {
+        "module_args": {
+            "add_children": null,
+            "attribute": null,
+            "backup": false,
+            "content": null,
+            "count": false,
+            "input_type": "xml",
+            "insertafter": false,
+            "insertbefore": false,
+            "namespaces": {},
+            "path": null,
+            "pretty_print": false,
+            "print_match": false,
+            "set_children": null,
+            "state": "present",
+            "strip_cdata_tags": false,
+            "validate": true,
+            "value": null,
+            "xmlstring": "<core xmlns=\"urn:activemq:core\"><address-settings><address-setting match=\"activemq.management#\">\n            <dead-letter-address>DLQ</dead-letter-address>\n            <expiry-address>ExpiryQueue</expiry-address>\n            <redelivery-delay>0</redelivery-delay>\n            <max-size-bytes>-1</max-size-bytes>\n            <message-counter-history-day-limit>10</message-counter-history-day-limit>\n            <address-full-policy>PAGE</address-full-policy>\n            <auto-create-queues>true</auto-create-queues>\n            <auto-create-addresses>true</auto-create-addresses>\n            <auto-create-jms-queues>true</auto-create-jms-queues>\n            <auto-create-jms-topics>true</auto-create-jms-topics>\n         </address-setting>\n          <address-setting match=\"#\">\n            <dead-letter-address>DLQ</dead-letter-address>\n            <expiry-address>ExpiryQueue</expiry-address>\n            <redelivery-delay>0</redelivery-delay>\n            <max-size-bytes>-1</max-size-bytes>\n            <message-counter-history-day-limit>10</message-counter-history-day-limit>\n            <address-full-policy>PAGE</address-full-policy>\n            <auto-create-queues>false</auto-create-queues>\n            <auto-create-addresses>false</auto-create-addresses>\n            <auto-create-jms-queues>false</auto-create-jms-queues>\n            <auto-create-jms-topics>false</auto-create-jms-topics>\n            <auto-delete-queues>false</auto-delete-queues>\n            <auto-delete-addresses>false</auto-delete-addresses>\n         </address-setting></address-settings></core>",
+            "xpath": null,
+            "xsd_path": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/artemis-configuration.xsd"
+        }
+    }
+}
+
+TASK [middleware_automation.amq.activemq : Create acceptor configuration string] ***
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/validate_config.yml:19
+ok: [ecm_adapter_ubuntu] => (item=None) => {
+    "censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result",
+    "changed": false
+}
+ok: [ecm_adapter_ubuntu] => (item=None) => {
+    "censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result",
+    "changed": false
+}
+ok: [ecm_adapter_ubuntu] => (item=None) => {
+    "censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result",
+    "changed": false
+}
+ok: [ecm_adapter_ubuntu] => (item=None) => {
+    "censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result",
+    "changed": false
+}
+ok: [ecm_adapter_ubuntu] => (item=None) => {
+    "censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result",
+    "changed": false
+}
+ok: [ecm_adapter_ubuntu] => {
+    "censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result",
+    "changed": false
+}
+
+TASK [middleware_automation.amq.activemq : Validate acceptors] *****************
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/validate_config.yml:28
+<localhost> ESTABLISH LOCAL CONNECTION FOR USER: makhlu
+<localhost> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651397.6559277-705-200718584388301 `" && echo ansible-tmp-1679651397.6559277-705-200718584388301="` echo /home/makhlu/ansible-tmp-1679651397.6559277-705-200718584388301 `" ) && sleep 0'
+Using module file /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/plugins/modules/xml.py
+<localhost> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmp6tyttgtd TO /home/makhlu/ansible-tmp-1679651397.6559277-705-200718584388301/AnsiballZ_xml.py
+<localhost> EXEC /bin/sh -c 'chmod u+x /home/makhlu/ansible-tmp-1679651397.6559277-705-200718584388301/ /home/makhlu/ansible-tmp-1679651397.6559277-705-200718584388301/AnsiballZ_xml.py && sleep 0'
+<localhost> EXEC /bin/sh -c '/usr/bin/python3 /home/makhlu/ansible-tmp-1679651397.6559277-705-200718584388301/AnsiballZ_xml.py && sleep 0'
+<localhost> EXEC /bin/sh -c 'rm -f -r /home/makhlu/ansible-tmp-1679651397.6559277-705-200718584388301/ > /dev/null 2>&1 && sleep 0'
+ok: [ecm_adapter_ubuntu -> localhost] => {
+    "censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result",
+    "changed": false
+}
+
+TASK [middleware_automation.amq.activemq : Create connector configuration string] ***
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/validate_config.yml:38
+ok: [ecm_adapter_ubuntu] => (item=None) => {
+    "censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result",
+    "changed": false
+}
+ok: [ecm_adapter_ubuntu] => {
+    "censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result",
+    "changed": false
+}
+
+TASK [middleware_automation.amq.activemq : Validate connectors] ****************
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/validate_config.yml:47
+<localhost> ESTABLISH LOCAL CONNECTION FOR USER: makhlu
+<localhost> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651397.9530058-730-157578402584875 `" && echo ansible-tmp-1679651397.9530058-730-157578402584875="` echo /home/makhlu/ansible-tmp-1679651397.9530058-730-157578402584875 `" ) && sleep 0'
+Using module file /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/plugins/modules/xml.py
+<localhost> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmp_8etnjye TO /home/makhlu/ansible-tmp-1679651397.9530058-730-157578402584875/AnsiballZ_xml.py
+<localhost> EXEC /bin/sh -c 'chmod u+x /home/makhlu/ansible-tmp-1679651397.9530058-730-157578402584875/ /home/makhlu/ansible-tmp-1679651397.9530058-730-157578402584875/AnsiballZ_xml.py && sleep 0'
+<localhost> EXEC /bin/sh -c '/usr/bin/python3 /home/makhlu/ansible-tmp-1679651397.9530058-730-157578402584875/AnsiballZ_xml.py && sleep 0'
+<localhost> EXEC /bin/sh -c 'rm -f -r /home/makhlu/ansible-tmp-1679651397.9530058-730-157578402584875/ > /dev/null 2>&1 && sleep 0'
+ok: [ecm_adapter_ubuntu -> localhost] => {
+    "censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result",
+    "changed": false
+}
+
+TASK [middleware_automation.amq.activemq : Create addresses string] ************
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/validate_config.yml:57
+ok: [ecm_adapter_ubuntu] => (item=queue.in) => {
+    "address": {
+        "anycast": [
+            {
+                "name": "queue.in"
+            }
+        ],
+        "name": "queue.in"
+    },
+    "ansible_facts": {
+        "validate_addresses": [
+            "       <address name=\"queue.in\">\n         <anycast>\n         <queue name=\"queue.in\" \n                max-consumers=\"-1\" \n                exclusive=\"false\" \n                consumers-before-dispatch=\"0\"\n                delay-before-dispatch=\"-1\">\n           <durable>true</durable>\n         </queue>\n         </anycast>\n       </address>\n"
+        ]
+    },
+    "ansible_loop_var": "address",
+    "changed": false
+}
+ok: [ecm_adapter_ubuntu] => (item=queue.out) => {
+    "address": {
+        "anycast": [
+            {
+                "name": "queue.out"
+            }
+        ],
+        "name": "queue.out"
+    },
+    "ansible_facts": {
+        "validate_addresses": [
+            "       <address name=\"queue.in\">\n         <anycast>\n         <queue name=\"queue.in\" \n                max-consumers=\"-1\" \n                exclusive=\"false\" \n                consumers-before-dispatch=\"0\"\n                delay-before-dispatch=\"-1\">\n           <durable>true</durable>\n         </queue>\n         </anycast>\n       </address>\n",
+            "       <address name=\"queue.out\">\n         <anycast>\n         <queue name=\"queue.out\" \n                max-consumers=\"-1\" \n                exclusive=\"false\" \n                consumers-before-dispatch=\"0\"\n                delay-before-dispatch=\"-1\">\n           <durable>true</durable>\n         </queue>\n         </anycast>\n       </address>\n"
+        ]
+    },
+    "ansible_loop_var": "address",
+    "changed": false
+}
+ok: [ecm_adapter_ubuntu] => (item=DLQ) => {
+    "address": {
+        "anycast": [
+            {
+                "name": "DLQ"
+            }
+        ],
+        "name": "DLQ"
+    },
+    "ansible_facts": {
+        "validate_addresses": [
+            "       <address name=\"queue.in\">\n         <anycast>\n         <queue name=\"queue.in\" \n                max-consumers=\"-1\" \n                exclusive=\"false\" \n                consumers-before-dispatch=\"0\"\n                delay-before-dispatch=\"-1\">\n           <durable>true</durable>\n         </queue>\n         </anycast>\n       </address>\n",
+            "       <address name=\"queue.out\">\n         <anycast>\n         <queue name=\"queue.out\" \n                max-consumers=\"-1\" \n                exclusive=\"false\" \n                consumers-before-dispatch=\"0\"\n                delay-before-dispatch=\"-1\">\n           <durable>true</durable>\n         </queue>\n         </anycast>\n       </address>\n",
+            "       <address name=\"DLQ\">\n         <anycast>\n         <queue name=\"DLQ\" \n                max-consumers=\"-1\" \n                exclusive=\"false\" \n                consumers-before-dispatch=\"0\"\n                delay-before-dispatch=\"-1\">\n           <durable>true</durable>\n         </queue>\n         </anycast>\n       </address>\n"
+        ]
+    },
+    "ansible_loop_var": "address",
+    "changed": false
+}
+ok: [ecm_adapter_ubuntu] => (item=ExpiryQueue) => {
+    "address": {
+        "anycast": [
+            {
+                "name": "ExpiryQueue"
+            }
+        ],
+        "name": "ExpiryQueue"
+    },
+    "ansible_facts": {
+        "validate_addresses": [
+            "       <address name=\"queue.in\">\n         <anycast>\n         <queue name=\"queue.in\" \n                max-consumers=\"-1\" \n                exclusive=\"false\" \n                consumers-before-dispatch=\"0\"\n                delay-before-dispatch=\"-1\">\n           <durable>true</durable>\n         </queue>\n         </anycast>\n       </address>\n",
+            "       <address name=\"queue.out\">\n         <anycast>\n         <queue name=\"queue.out\" \n                max-consumers=\"-1\" \n                exclusive=\"false\" \n                consumers-before-dispatch=\"0\"\n                delay-before-dispatch=\"-1\">\n           <durable>true</durable>\n         </queue>\n         </anycast>\n       </address>\n",
+            "       <address name=\"DLQ\">\n         <anycast>\n         <queue name=\"DLQ\" \n                max-consumers=\"-1\" \n                exclusive=\"false\" \n                consumers-before-dispatch=\"0\"\n                delay-before-dispatch=\"-1\">\n           <durable>true</durable>\n         </queue>\n         </anycast>\n       </address>\n",
+            "       <address name=\"ExpiryQueue\">\n         <anycast>\n         <queue name=\"ExpiryQueue\" \n                max-consumers=\"-1\" \n                exclusive=\"false\" \n                consumers-before-dispatch=\"0\"\n                delay-before-dispatch=\"-1\">\n           <durable>true</durable>\n         </queue>\n         </anycast>\n       </address>\n"
+        ]
+    },
+    "ansible_loop_var": "address",
+    "changed": false
+}
+
+TASK [middleware_automation.amq.activemq : Validate addresses] *****************
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/validate_config.yml:65
+<localhost> ESTABLISH LOCAL CONNECTION FOR USER: makhlu
+<localhost> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651398.6009147-755-4017419014881 `" && echo ansible-tmp-1679651398.6009147-755-4017419014881="` echo /home/makhlu/ansible-tmp-1679651398.6009147-755-4017419014881 `" ) && sleep 0'
+Using module file /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/plugins/modules/xml.py
+<localhost> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmp2vpk8z0g TO /home/makhlu/ansible-tmp-1679651398.6009147-755-4017419014881/AnsiballZ_xml.py
+<localhost> EXEC /bin/sh -c 'chmod u+x /home/makhlu/ansible-tmp-1679651398.6009147-755-4017419014881/ /home/makhlu/ansible-tmp-1679651398.6009147-755-4017419014881/AnsiballZ_xml.py && sleep 0'
+<localhost> EXEC /bin/sh -c '/usr/bin/python3 /home/makhlu/ansible-tmp-1679651398.6009147-755-4017419014881/AnsiballZ_xml.py && sleep 0'
+<localhost> EXEC /bin/sh -c 'rm -f -r /home/makhlu/ansible-tmp-1679651398.6009147-755-4017419014881/ > /dev/null 2>&1 && sleep 0'
+ok: [ecm_adapter_ubuntu -> localhost] => {
+    "changed": false,
+    "invocation": {
+        "module_args": {
+            "add_children": null,
+            "attribute": null,
+            "backup": false,
+            "content": null,
+            "count": false,
+            "input_type": "xml",
+            "insertafter": false,
+            "insertbefore": false,
+            "namespaces": {},
+            "path": null,
+            "pretty_print": false,
+            "print_match": false,
+            "set_children": null,
+            "state": "present",
+            "strip_cdata_tags": false,
+            "validate": true,
+            "value": null,
+            "xmlstring": "<core xmlns=\"urn:activemq:core\"><addresses><address name=\"queue.in\">\n         <anycast>\n         <queue name=\"queue.in\" \n                max-consumers=\"-1\" \n                exclusive=\"false\" \n                consumers-before-dispatch=\"0\"\n                delay-before-dispatch=\"-1\">\n           <durable>true</durable>\n         </queue>\n         </anycast>\n       </address>\n        <address name=\"queue.out\">\n         <anycast>\n         <queue name=\"queue.out\" \n                max-consumers=\"-1\" \n                exclusive=\"false\" \n                consumers-before-dispatch=\"0\"\n                delay-before-dispatch=\"-1\">\n           <durable>true</durable>\n         </queue>\n         </anycast>\n       </address>\n        <address name=\"DLQ\">\n         <anycast>\n         <queue name=\"DLQ\" \n                max-consumers=\"-1\" \n                exclusive=\"false\" \n                consumers-before-dispatch=\"0\"\n                delay-before-dispatch=\"-1\">\n           <durable>true</durable>\n         </queue>\n         </anycast>\n       </address>\n        <address name=\"ExpiryQueue\">\n         <anycast>\n         <queue name=\"ExpiryQueue\" \n                max-consumers=\"-1\" \n                exclusive=\"false\" \n                consumers-before-dispatch=\"0\"\n                delay-before-dispatch=\"-1\">\n           <durable>true</durable>\n         </queue>\n         </anycast>\n       </address></addresses></core>",
+            "xpath": null,
+            "xsd_path": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/artemis-configuration.xsd"
+        }
+    }
+}
+
+TASK [middleware_automation.amq.activemq : Create diverts configuration string] ***
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/validate_config.yml:74
+skipping: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "skipped_reason": "No items in the list"
+}
+
+TASK [middleware_automation.amq.activemq : Validate diverts] *******************
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/validate_config.yml:82
+<localhost> ESTABLISH LOCAL CONNECTION FOR USER: makhlu
+<localhost> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651398.9021378-780-231342522393789 `" && echo ansible-tmp-1679651398.9021378-780-231342522393789="` echo /home/makhlu/ansible-tmp-1679651398.9021378-780-231342522393789 `" ) && sleep 0'
+Using module file /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/plugins/modules/xml.py
+<localhost> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmpnx8_zjs1 TO /home/makhlu/ansible-tmp-1679651398.9021378-780-231342522393789/AnsiballZ_xml.py
+<localhost> EXEC /bin/sh -c 'chmod u+x /home/makhlu/ansible-tmp-1679651398.9021378-780-231342522393789/ /home/makhlu/ansible-tmp-1679651398.9021378-780-231342522393789/AnsiballZ_xml.py && sleep 0'
+<localhost> EXEC /bin/sh -c '/usr/bin/python3 /home/makhlu/ansible-tmp-1679651398.9021378-780-231342522393789/AnsiballZ_xml.py && sleep 0'
+<localhost> EXEC /bin/sh -c 'rm -f -r /home/makhlu/ansible-tmp-1679651398.9021378-780-231342522393789/ > /dev/null 2>&1 && sleep 0'
+ok: [ecm_adapter_ubuntu -> localhost] => {
+    "changed": false,
+    "invocation": {
+        "module_args": {
+            "add_children": null,
+            "attribute": null,
+            "backup": false,
+            "content": null,
+            "count": false,
+            "input_type": "xml",
+            "insertafter": false,
+            "insertbefore": false,
+            "namespaces": {},
+            "path": null,
+            "pretty_print": false,
+            "print_match": false,
+            "set_children": null,
+            "state": "present",
+            "strip_cdata_tags": false,
+            "validate": true,
+            "value": null,
+            "xmlstring": "<core xmlns=\"urn:activemq:core\"><diverts></diverts></core>",
+            "xpath": null,
+            "xsd_path": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/artemis-configuration.xsd"
+        }
+    }
+}
+
+TASK [middleware_automation.amq.activemq : Create security settings] ***********
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/validate_config.yml:91
+ok: [ecm_adapter_ubuntu] => (item={'name': 'amq', 'match': '#', 'permissions': ['createNonDurableQueue', 'deleteNonDurableQueue', 'createDurableQueue', 'deleteDurableQueue', 'createAddress', 'deleteAddress', 'consume', 'browse', 'send', 'manage']}) => {
+    "ansible_facts": {
+        "validate_security_settings": [
+            "    <security-setting match=\"#\">\n        <permission type=\"createNonDurableQueue\" roles=\"amq\"/>\n        <permission type=\"deleteNonDurableQueue\" roles=\"amq\"/>\n        <permission type=\"createDurableQueue\" roles=\"amq\"/>\n        <permission type=\"deleteDurableQueue\" roles=\"amq\"/>\n        <permission type=\"createAddress\" roles=\"amq\"/>\n        <permission type=\"deleteAddress\" roles=\"amq\"/>\n        <permission type=\"consume\" roles=\"amq\"/>\n        <permission type=\"browse\" roles=\"amq\"/>\n        <permission type=\"send\" roles=\"amq\"/>\n        <permission type=\"manage\" roles=\"amq\"/>\n      </security-setting>\n"
+        ]
+    },
+    "ansible_loop_var": "item",
+    "changed": false,
+    "item": {
+        "match": "#",
+        "name": "amq",
+        "permissions": [
+            "createNonDurableQueue",
+            "deleteNonDurableQueue",
+            "createDurableQueue",
+            "deleteDurableQueue",
+            "createAddress",
+            "deleteAddress",
+            "consume",
+            "browse",
+            "send",
+            "manage"
+        ]
+    }
+}
+
+TASK [middleware_automation.amq.activemq : Validate security settings] *********
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/validate_config.yml:96
+<localhost> ESTABLISH LOCAL CONNECTION FOR USER: makhlu
+<localhost> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651399.2364278-805-160956496529684 `" && echo ansible-tmp-1679651399.2364278-805-160956496529684="` echo /home/makhlu/ansible-tmp-1679651399.2364278-805-160956496529684 `" ) && sleep 0'
+Using module file /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/plugins/modules/xml.py
+<localhost> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmpot2my9_e TO /home/makhlu/ansible-tmp-1679651399.2364278-805-160956496529684/AnsiballZ_xml.py
+<localhost> EXEC /bin/sh -c 'chmod u+x /home/makhlu/ansible-tmp-1679651399.2364278-805-160956496529684/ /home/makhlu/ansible-tmp-1679651399.2364278-805-160956496529684/AnsiballZ_xml.py && sleep 0'
+<localhost> EXEC /bin/sh -c '/usr/bin/python3 /home/makhlu/ansible-tmp-1679651399.2364278-805-160956496529684/AnsiballZ_xml.py && sleep 0'
+<localhost> EXEC /bin/sh -c 'rm -f -r /home/makhlu/ansible-tmp-1679651399.2364278-805-160956496529684/ > /dev/null 2>&1 && sleep 0'
+ok: [ecm_adapter_ubuntu -> localhost] => {
+    "changed": false,
+    "invocation": {
+        "module_args": {
+            "add_children": null,
+            "attribute": null,
+            "backup": false,
+            "content": null,
+            "count": false,
+            "input_type": "xml",
+            "insertafter": false,
+            "insertbefore": false,
+            "namespaces": {},
+            "path": null,
+            "pretty_print": false,
+            "print_match": false,
+            "set_children": null,
+            "state": "present",
+            "strip_cdata_tags": false,
+            "validate": true,
+            "value": null,
+            "xmlstring": "<core xmlns=\"urn:activemq:core\"><security-settings><security-setting match=\"#\">\n        <permission type=\"createNonDurableQueue\" roles=\"amq\"/>\n        <permission type=\"deleteNonDurableQueue\" roles=\"amq\"/>\n        <permission type=\"createDurableQueue\" roles=\"amq\"/>\n        <permission type=\"deleteDurableQueue\" roles=\"amq\"/>\n        <permission type=\"createAddress\" roles=\"amq\"/>\n        <permission type=\"deleteAddress\" roles=\"amq\"/>\n        <permission type=\"consume\" roles=\"amq\"/>\n        <permission type=\"browse\" roles=\"amq\"/>\n        <permission type=\"send\" roles=\"amq\"/>\n        <permission type=\"manage\" roles=\"amq\"/>\n      </security-setting></security-settings></core>",
+            "xpath": null,
+            "xsd_path": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/artemis-configuration.xsd"
+        }
+    }
+}
+
+TASK [middleware_automation.amq.activemq : Include firewall config tasks] ******
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/main.yml:12
+skipping: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "skip_reason": "Conditional result was False"
+}
+
+TASK [middleware_automation.amq.activemq : Include install tasks] **************
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/main.yml:18
+included: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/install.yml for ecm_adapter_ubuntu
+
+TASK [middleware_automation.amq.activemq : Validate parameters] ****************
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/install.yml:2
+ok: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [middleware_automation.amq.activemq : Create activemq service group] ******
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/install.yml:13
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651399.6802158-834-182327753985670 `" && echo ansible-tmp-1679651399.6802158-834-182327753985670="` echo /home/makhlu/ansible-tmp-1679651399.6802158-834-182327753985670 `" ) && sleep 0'"'"''
+<84.201.156.163> (0, b'ansible-tmp-1679651399.6802158-834-182327753985670=/home/makhlu/ansible-tmp-1679651399.6802158-834-182327753985670\n', b'')
+Using module file /usr/lib/python3/dist-packages/ansible/modules/group.py
+<84.201.156.163> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmpnl970ru9 TO /home/makhlu/ansible-tmp-1679651399.6802158-834-182327753985670/AnsiballZ_group.py
+<84.201.156.163> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' '[84.201.156.163]'
+<84.201.156.163> (0, b'sftp> put /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmpnl970ru9 /home/makhlu/ansible-tmp-1679651399.6802158-834-182327753985670/AnsiballZ_group.py\n', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'chmod u+x /home/makhlu/ansible-tmp-1679651399.6802158-834-182327753985670/ /home/makhlu/ansible-tmp-1679651399.6802158-834-182327753985670/AnsiballZ_group.py && sleep 0'"'"''
+<84.201.156.163> (0, b'', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' -tt 84.201.156.163 '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-kinffowrwyexlqlimpxcsmoottwmmzvn ; /usr/bin/python3 /home/makhlu/ansible-tmp-1679651399.6802158-834-182327753985670/AnsiballZ_group.py'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+Escalation succeeded
+<84.201.156.163> (0, b'\r\n{"name": "amq-broker", "state": "present", "changed": false, "system": true, "gid": 999, "invocation": {"module_args": {"name": "amq-broker", "system": true, "state": "present", "local": false, "non_unique": false, "gid": null}}}\r\n', b'Shared connection to 84.201.156.163 closed.\r\n')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'rm -f -r /home/makhlu/ansible-tmp-1679651399.6802158-834-182327753985670/ > /dev/null 2>&1 && sleep 0'"'"''
+<84.201.156.163> (0, b'', b'')
+ok: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "gid": 999,
+    "invocation": {
+        "module_args": {
+            "gid": null,
+            "local": false,
+            "name": "amq-broker",
+            "non_unique": false,
+            "state": "present",
+            "system": true
+        }
+    },
+    "name": "amq-broker",
+    "state": "present",
+    "system": true
+}
+
+TASK [middleware_automation.amq.activemq : Create activemq service user] *******
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/install.yml:19
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651400.2961862-842-152379308489641 `" && echo ansible-tmp-1679651400.2961862-842-152379308489641="` echo /home/makhlu/ansible-tmp-1679651400.2961862-842-152379308489641 `" ) && sleep 0'"'"''
+<84.201.156.163> (0, b'ansible-tmp-1679651400.2961862-842-152379308489641=/home/makhlu/ansible-tmp-1679651400.2961862-842-152379308489641\n', b'')
+Using module file /usr/lib/python3/dist-packages/ansible/modules/user.py
+<84.201.156.163> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmpbfdczqwa TO /home/makhlu/ansible-tmp-1679651400.2961862-842-152379308489641/AnsiballZ_user.py
+<84.201.156.163> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' '[84.201.156.163]'
+<84.201.156.163> (0, b'sftp> put /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmpbfdczqwa /home/makhlu/ansible-tmp-1679651400.2961862-842-152379308489641/AnsiballZ_user.py\n', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'chmod u+x /home/makhlu/ansible-tmp-1679651400.2961862-842-152379308489641/ /home/makhlu/ansible-tmp-1679651400.2961862-842-152379308489641/AnsiballZ_user.py && sleep 0'"'"''
+<84.201.156.163> (0, b'', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' -tt 84.201.156.163 '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-jyrntusojyznjqeafiumcjvbrfvclyvp ; /usr/bin/python3 /home/makhlu/ansible-tmp-1679651400.2961862-842-152379308489641/AnsiballZ_user.py'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+Escalation succeeded
+<84.201.156.163> (0, b'\r\n{"name": "amq-broker", "state": "present", "append": false, "move_home": false, "changed": false, "uid": 998, "group": 999, "comment": "", "home": "/opt/amq/apache-artemis-2.18.0", "shell": "/bin/sh", "invocation": {"module_args": {"name": "amq-broker", "group": "amq-broker", "home": "/opt/amq/apache-artemis-2.18.0", "system": true, "create_home": false, "state": "present", "non_unique": false, "force": false, "remove": false, "move_home": false, "append": false, "ssh_key_bits": 0, "ssh_key_type": "rsa", "ssh_key_comment": "ansible-generated on amq-2", "update_password": "always", "uid": null, "groups": null, "comment": null, "shell": null, "password": null, "login_class": null, "password_expire_max": null, "password_expire_min": null, "hidden": null, "seuser": null, "skeleton": null, "generate_ssh_key": null, "ssh_key_file": null, "ssh_key_passphrase": null, "expires": null, "password_lock": null, "local": null, "profile": null, "authorization": null, "role": null, "umask": null}}}\r\n', b'Shared connection to 84.201.156.163 closed.\r\n')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'rm -f -r /home/makhlu/ansible-tmp-1679651400.2961862-842-152379308489641/ > /dev/null 2>&1 && sleep 0'"'"''
+<84.201.156.163> (0, b'', b'')
+ok: [ecm_adapter_ubuntu] => {
+    "append": false,
+    "changed": false,
+    "comment": "",
+    "group": 999,
+    "home": "/opt/amq/apache-artemis-2.18.0",
+    "invocation": {
+        "module_args": {
+            "append": false,
+            "authorization": null,
+            "comment": null,
+            "create_home": false,
+            "expires": null,
+            "force": false,
+            "generate_ssh_key": null,
+            "group": "amq-broker",
+            "groups": null,
+            "hidden": null,
+            "home": "/opt/amq/apache-artemis-2.18.0",
+            "local": null,
+            "login_class": null,
+            "move_home": false,
+            "name": "amq-broker",
+            "non_unique": false,
+            "password": null,
+            "password_expire_max": null,
+            "password_expire_min": null,
+            "password_lock": null,
+            "profile": null,
+            "remove": false,
+            "role": null,
+            "seuser": null,
+            "shell": null,
+            "skeleton": null,
+            "ssh_key_bits": 0,
+            "ssh_key_comment": "ansible-generated on amq-2",
+            "ssh_key_file": null,
+            "ssh_key_passphrase": null,
+            "ssh_key_type": "rsa",
+            "state": "present",
+            "system": true,
+            "uid": null,
+            "umask": null,
+            "update_password": "always"
+        }
+    },
+    "move_home": false,
+    "name": "amq-broker",
+    "shell": "/bin/sh",
+    "state": "present",
+    "uid": 998
+}
+
+TASK [middleware_automation.amq.activemq : Check activemq install location] ****
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/install.yml:28
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651400.9568439-850-67563519768762 `" && echo ansible-tmp-1679651400.9568439-850-67563519768762="` echo /home/makhlu/ansible-tmp-1679651400.9568439-850-67563519768762 `" ) && sleep 0'"'"''
+<84.201.156.163> (0, b'ansible-tmp-1679651400.9568439-850-67563519768762=/home/makhlu/ansible-tmp-1679651400.9568439-850-67563519768762\n', b'')
+Using module file /usr/lib/python3/dist-packages/ansible/modules/stat.py
+<84.201.156.163> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmps6j7f1el TO /home/makhlu/ansible-tmp-1679651400.9568439-850-67563519768762/AnsiballZ_stat.py
+<84.201.156.163> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' '[84.201.156.163]'
+<84.201.156.163> (0, b'sftp> put /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmps6j7f1el /home/makhlu/ansible-tmp-1679651400.9568439-850-67563519768762/AnsiballZ_stat.py\n', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'chmod u+x /home/makhlu/ansible-tmp-1679651400.9568439-850-67563519768762/ /home/makhlu/ansible-tmp-1679651400.9568439-850-67563519768762/AnsiballZ_stat.py && sleep 0'"'"''
+<84.201.156.163> (0, b'', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' -tt 84.201.156.163 '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-jhuctsgnhkshaobraphqimzoquwnegmc ; /usr/bin/python3 /home/makhlu/ansible-tmp-1679651400.9568439-850-67563519768762/AnsiballZ_stat.py'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+Escalation succeeded
+<84.201.156.163> (0, b'\r\n{"changed": false, "stat": {"exists": true, "path": "/opt/amq", "mode": "0750", "isdir": true, "ischr": false, "isblk": false, "isreg": false, "isfifo": false, "islnk": false, "issock": false, "uid": 998, "gid": 999, "size": 4096, "inode": 262687, "dev": 64514, "nlink": 2, "atime": 1679648720.1248484, "mtime": 1679648755.3613708, "ctime": 1679648755.3613708, "wusr": true, "rusr": true, "xusr": true, "wgrp": false, "rgrp": true, "xgrp": true, "woth": false, "roth": false, "xoth": false, "isuid": false, "isgid": false, "blocks": 8, "block_size": 4096, "device_type": 0, "readable": true, "writeable": true, "executable": true, "pw_name": "amq-broker", "gr_name": "amq-broker", "mimetype": "inode/directory", "charset": "binary", "version": "3670010276", "attributes": ["extents"], "attr_flags": "e"}, "invocation": {"module_args": {"path": "/opt/amq", "follow": false, "get_md5": false, "get_checksum": true, "get_mime": true, "get_attributes": true, "checksum_algorithm": "sha1"}}}\r\n', b'Shared connection to 84.201.156.163 closed.\r\n')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'rm -f -r /home/makhlu/ansible-tmp-1679651400.9568439-850-67563519768762/ > /dev/null 2>&1 && sleep 0'"'"''
+<84.201.156.163> (0, b'', b'')
+ok: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "invocation": {
+        "module_args": {
+            "checksum_algorithm": "sha1",
+            "follow": false,
+            "get_attributes": true,
+            "get_checksum": true,
+            "get_md5": false,
+            "get_mime": true,
+            "path": "/opt/amq"
+        }
+    },
+    "stat": {
+        "atime": 1679648720.1248484,
+        "attr_flags": "e",
+        "attributes": [
+            "extents"
+        ],
+        "block_size": 4096,
+        "blocks": 8,
+        "charset": "binary",
+        "ctime": 1679648755.3613708,
+        "dev": 64514,
+        "device_type": 0,
+        "executable": true,
+        "exists": true,
+        "gid": 999,
+        "gr_name": "amq-broker",
+        "inode": 262687,
+        "isblk": false,
+        "ischr": false,
+        "isdir": true,
+        "isfifo": false,
+        "isgid": false,
+        "islnk": false,
+        "isreg": false,
+        "issock": false,
+        "isuid": false,
+        "mimetype": "inode/directory",
+        "mode": "0750",
+        "mtime": 1679648755.3613708,
+        "nlink": 2,
+        "path": "/opt/amq",
+        "pw_name": "amq-broker",
+        "readable": true,
+        "rgrp": true,
+        "roth": false,
+        "rusr": true,
+        "size": 4096,
+        "uid": 998,
+        "version": "3670010276",
+        "wgrp": false,
+        "woth": false,
+        "writeable": true,
+        "wusr": true,
+        "xgrp": true,
+        "xoth": false,
+        "xusr": true
+    }
+}
+
+TASK [middleware_automation.amq.activemq : Create activemq install location] ***
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/install.yml:34
+skipping: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "skip_reason": "Conditional result was False"
+}
+
+TASK [middleware_automation.amq.activemq : Set download archive path] **********
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/install.yml:46
+ok: [ecm_adapter_ubuntu] => {
+    "ansible_facts": {
+        "archive": "/opt/amq/apache-artemis-2.18.0-bin.zip"
+    },
+    "changed": false
+}
+
+TASK [middleware_automation.amq.activemq : Check download archive path] ********
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/install.yml:50
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651401.507263-862-86955995727851 `" && echo ansible-tmp-1679651401.507263-862-86955995727851="` echo /home/makhlu/ansible-tmp-1679651401.507263-862-86955995727851 `" ) && sleep 0'"'"''
+<84.201.156.163> (0, b'ansible-tmp-1679651401.507263-862-86955995727851=/home/makhlu/ansible-tmp-1679651401.507263-862-86955995727851\n', b'')
+Using module file /usr/lib/python3/dist-packages/ansible/modules/stat.py
+<84.201.156.163> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmpt0iusayk TO /home/makhlu/ansible-tmp-1679651401.507263-862-86955995727851/AnsiballZ_stat.py
+<84.201.156.163> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' '[84.201.156.163]'
+<84.201.156.163> (0, b'sftp> put /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmpt0iusayk /home/makhlu/ansible-tmp-1679651401.507263-862-86955995727851/AnsiballZ_stat.py\n', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'chmod u+x /home/makhlu/ansible-tmp-1679651401.507263-862-86955995727851/ /home/makhlu/ansible-tmp-1679651401.507263-862-86955995727851/AnsiballZ_stat.py && sleep 0'"'"''
+<84.201.156.163> (0, b'', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' -tt 84.201.156.163 '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-zpxmmhsuoyezjxchyapqxxhbwuexkrbo ; /usr/bin/python3 /home/makhlu/ansible-tmp-1679651401.507263-862-86955995727851/AnsiballZ_stat.py'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+Escalation succeeded
+<84.201.156.163> (0, b'\r\n{"changed": false, "stat": {"exists": true, "path": "/opt/amq/apache-artemis-2.18.0-bin.zip", "mode": "0750", "isdir": false, "ischr": false, "isblk": false, "isreg": true, "isfifo": false, "islnk": false, "issock": false, "uid": 998, "gid": 999, "size": 65146357, "inode": 262685, "dev": 64514, "nlink": 1, "atime": 1679648757.329399, "mtime": 1679648754.7933626, "ctime": 1679648755.3613708, "wusr": true, "rusr": true, "xusr": true, "wgrp": false, "rgrp": true, "xgrp": true, "woth": false, "roth": false, "xoth": false, "isuid": false, "isgid": false, "blocks": 127240, "block_size": 4096, "device_type": 0, "readable": true, "writeable": true, "executable": true, "pw_name": "amq-broker", "gr_name": "amq-broker", "checksum": "244a05b14317fff30436e5fa5c4e420e082ffc29", "mimetype": "application/zip", "charset": "binary", "version": "998745327", "attributes": ["extents"], "attr_flags": "e"}, "invocation": {"module_args": {"path": "/opt/amq/apache-artemis-2.18.0-bin.zip", "follow": false, "get_md5": false, "get_checksum": true, "get_mime": true, "get_attributes": true, "checksum_algorithm": "sha1"}}}\r\n', b'Shared connection to 84.201.156.163 closed.\r\n')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'rm -f -r /home/makhlu/ansible-tmp-1679651401.507263-862-86955995727851/ > /dev/null 2>&1 && sleep 0'"'"''
+<84.201.156.163> (0, b'', b'')
+ok: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "invocation": {
+        "module_args": {
+            "checksum_algorithm": "sha1",
+            "follow": false,
+            "get_attributes": true,
+            "get_checksum": true,
+            "get_md5": false,
+            "get_mime": true,
+            "path": "/opt/amq/apache-artemis-2.18.0-bin.zip"
+        }
+    },
+    "stat": {
+        "atime": 1679648757.329399,
+        "attr_flags": "e",
+        "attributes": [
+            "extents"
+        ],
+        "block_size": 4096,
+        "blocks": 127240,
+        "charset": "binary",
+        "checksum": "244a05b14317fff30436e5fa5c4e420e082ffc29",
+        "ctime": 1679648755.3613708,
+        "dev": 64514,
+        "device_type": 0,
+        "executable": true,
+        "exists": true,
+        "gid": 999,
+        "gr_name": "amq-broker",
+        "inode": 262685,
+        "isblk": false,
+        "ischr": false,
+        "isdir": false,
+        "isfifo": false,
+        "isgid": false,
+        "islnk": false,
+        "isreg": true,
+        "issock": false,
+        "isuid": false,
+        "mimetype": "application/zip",
+        "mode": "0750",
+        "mtime": 1679648754.7933626,
+        "nlink": 1,
+        "path": "/opt/amq/apache-artemis-2.18.0-bin.zip",
+        "pw_name": "amq-broker",
+        "readable": true,
+        "rgrp": true,
+        "roth": false,
+        "rusr": true,
+        "size": 65146357,
+        "uid": 998,
+        "version": "998745327",
+        "wgrp": false,
+        "woth": false,
+        "writeable": true,
+        "wusr": true,
+        "xgrp": true,
+        "xoth": false,
+        "xusr": true
+    }
+}
+
+TASK [middleware_automation.amq.activemq : Download activemq archive] **********
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/install.yml:57
+skipping: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "skip_reason": "Conditional result was False"
+}
+
+TASK [middleware_automation.amq.activemq : Retrieve product download using JBoss Network API] ***
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/install.yml:82
+skipping: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "skip_reason": "Conditional result was False"
+}
+
+TASK [middleware_automation.amq.activemq : Determine install zipfile from search results] ***
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/install.yml:93
+skipping: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "skip_reason": "Conditional result was False"
+}
+
+TASK [middleware_automation.amq.activemq : Download AMQ Broker] ****************
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/install.yml:99
+skipping: [ecm_adapter_ubuntu] => {
+    "censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result",
+    "changed": false
+}
+
+TASK [middleware_automation.amq.activemq : Check downloaded archive] ***********
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/install.yml:109
+<localhost> ESTABLISH LOCAL CONNECTION FOR USER: makhlu
+<localhost> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651402.3530385-878-188437458391632 `" && echo ansible-tmp-1679651402.3530385-878-188437458391632="` echo /home/makhlu/ansible-tmp-1679651402.3530385-878-188437458391632 `" ) && sleep 0'
+Using module file /usr/lib/python3/dist-packages/ansible/modules/stat.py
+<localhost> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmpoohh1ycc TO /home/makhlu/ansible-tmp-1679651402.3530385-878-188437458391632/AnsiballZ_stat.py
+<localhost> EXEC /bin/sh -c 'chmod u+x /home/makhlu/ansible-tmp-1679651402.3530385-878-188437458391632/ /home/makhlu/ansible-tmp-1679651402.3530385-878-188437458391632/AnsiballZ_stat.py && sleep 0'
+<localhost> EXEC /bin/sh -c '/usr/bin/python3 /home/makhlu/ansible-tmp-1679651402.3530385-878-188437458391632/AnsiballZ_stat.py && sleep 0'
+<localhost> EXEC /bin/sh -c 'rm -f -r /home/makhlu/ansible-tmp-1679651402.3530385-878-188437458391632/ > /dev/null 2>&1 && sleep 0'
+ok: [ecm_adapter_ubuntu -> localhost] => {
+    "changed": false,
+    "invocation": {
+        "module_args": {
+            "checksum_algorithm": "sha1",
+            "follow": false,
+            "get_attributes": true,
+            "get_checksum": true,
+            "get_md5": false,
+            "get_mime": true,
+            "path": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/apache-artemis-2.18.0-bin.zip"
+        }
+    },
+    "stat": {
+        "atime": 1679648746.6249592,
+        "attr_flags": "",
+        "attributes": [],
+        "block_size": 4096,
+        "blocks": 126104,
+        "charset": "binary",
+        "checksum": "244a05b14317fff30436e5fa5c4e420e082ffc29",
+        "ctime": 1679648746.1441638,
+        "dev": 46,
+        "device_type": 0,
+        "executable": true,
+        "exists": true,
+        "gid": 1000,
+        "gr_name": "makhlu",
+        "inode": 20829148276590277,
+        "isblk": false,
+        "ischr": false,
+        "isdir": false,
+        "isfifo": false,
+        "isgid": false,
+        "islnk": false,
+        "isreg": true,
+        "issock": false,
+        "isuid": false,
+        "mimetype": "application/zip",
+        "mode": "0777",
+        "mtime": 1679648745.0,
+        "nlink": 1,
+        "path": "/mnt/c/PROJECTS/GitHub/ru.kpip.ansible/apache-artemis-2.18.0-bin.zip",
+        "pw_name": "makhlu",
+        "readable": true,
+        "rgrp": true,
+        "roth": true,
+        "rusr": true,
+        "size": 65146357,
+        "uid": 1000,
+        "version": null,
+        "wgrp": true,
+        "woth": true,
+        "writeable": true,
+        "wusr": true,
+        "xgrp": true,
+        "xoth": true,
+        "xusr": true
+    }
+}
+
+TASK [middleware_automation.amq.activemq : Copy archive to target nodes] *******
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/install.yml:116
+skipping: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "skip_reason": "Conditional result was False"
+}
+
+TASK [middleware_automation.amq.activemq : Check target directory: /opt/amq/apache-artemis-2.18.0] ***
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/install.yml:130
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651403.0797179-905-193357492708252 `" && echo ansible-tmp-1679651403.0797179-905-193357492708252="` echo /home/makhlu/ansible-tmp-1679651403.0797179-905-193357492708252 `" ) && sleep 0'"'"''
+<84.201.156.163> (0, b'ansible-tmp-1679651403.0797179-905-193357492708252=/home/makhlu/ansible-tmp-1679651403.0797179-905-193357492708252\n', b'')
+Using module file /usr/lib/python3/dist-packages/ansible/modules/stat.py
+<84.201.156.163> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmpdlqdpghp TO /home/makhlu/ansible-tmp-1679651403.0797179-905-193357492708252/AnsiballZ_stat.py
+<84.201.156.163> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' '[84.201.156.163]'
+<84.201.156.163> (0, b'sftp> put /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmpdlqdpghp /home/makhlu/ansible-tmp-1679651403.0797179-905-193357492708252/AnsiballZ_stat.py\n', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'chmod u+x /home/makhlu/ansible-tmp-1679651403.0797179-905-193357492708252/ /home/makhlu/ansible-tmp-1679651403.0797179-905-193357492708252/AnsiballZ_stat.py && sleep 0'"'"''
+<84.201.156.163> (0, b'', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' -tt 84.201.156.163 '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-itrxhbqzmoeaviwwrohjpiycvvwtumcy ; /usr/bin/python3 /home/makhlu/ansible-tmp-1679651403.0797179-905-193357492708252/AnsiballZ_stat.py'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+Escalation succeeded
+<84.201.156.163> (0, b'\r\n{"changed": false, "stat": {"exists": false}, "invocation": {"module_args": {"path": "/opt/amq/apache-artemis-2.18.0", "follow": false, "get_md5": false, "get_checksum": true, "get_mime": true, "get_attributes": true, "checksum_algorithm": "sha1"}}}\r\n', b'Shared connection to 84.201.156.163 closed.\r\n')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'rm -f -r /home/makhlu/ansible-tmp-1679651403.0797179-905-193357492708252/ > /dev/null 2>&1 && sleep 0'"'"''
+<84.201.156.163> (0, b'', b'')
+ok: [ecm_adapter_ubuntu] => {
+    "changed": false,
+    "invocation": {
+        "module_args": {
+            "checksum_algorithm": "sha1",
+            "follow": false,
+            "get_attributes": true,
+            "get_checksum": true,
+            "get_md5": false,
+            "get_mime": true,
+            "path": "/opt/amq/apache-artemis-2.18.0"
+        }
+    },
+    "stat": {
+        "exists": false
+    }
+}
+
+TASK [middleware_automation.amq.activemq : Extract Apache ActiveMQ archive on target] ***
+task path: /home/makhlu/.ansible/collections/ansible_collections/middleware_automation/amq/roles/activemq/tasks/install.yml:136
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'( umask 77 && mkdir -p "` echo /home/makhlu `"&& mkdir "` echo /home/makhlu/ansible-tmp-1679651403.5882254-913-237196261954686 `" && echo ansible-tmp-1679651403.5882254-913-237196261954686="` echo /home/makhlu/ansible-tmp-1679651403.5882254-913-237196261954686 `" ) && sleep 0'"'"''
+<84.201.156.163> (0, b'ansible-tmp-1679651403.5882254-913-237196261954686=/home/makhlu/ansible-tmp-1679651403.5882254-913-237196261954686\n', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' -tt 84.201.156.163 '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-uksvmmphjuvhxxeessluqdsjrlsjjcxm ; test -e /opt/amq/apache-artemis-2.18.0'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+Escalation succeeded
+<84.201.156.163> (1, b'', b'Shared connection to 84.201.156.163 closed.\r\n')
+<84.201.156.163> Failed to connect to the host via ssh: Shared connection to 84.201.156.163 closed.
+Using module file /usr/lib/python3/dist-packages/ansible/modules/stat.py
+<84.201.156.163> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmp71u2e9r4 TO /home/makhlu/ansible-tmp-1679651403.5882254-913-237196261954686/AnsiballZ_stat.py
+<84.201.156.163> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' '[84.201.156.163]'
+<84.201.156.163> (0, b'sftp> put /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmp71u2e9r4 /home/makhlu/ansible-tmp-1679651403.5882254-913-237196261954686/AnsiballZ_stat.py\n', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'chmod u+x /home/makhlu/ansible-tmp-1679651403.5882254-913-237196261954686/ /home/makhlu/ansible-tmp-1679651403.5882254-913-237196261954686/AnsiballZ_stat.py && sleep 0'"'"''
+<84.201.156.163> (0, b'', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' -tt 84.201.156.163 '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-qrhivbrwacfvuericbtjzfzbrdxvjjbf ; /usr/bin/python3 /home/makhlu/ansible-tmp-1679651403.5882254-913-237196261954686/AnsiballZ_stat.py'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+Escalation succeeded
+<84.201.156.163> (0, b'\r\n{"changed": false, "stat": {"exists": true, "path": "/opt/amq", "mode": "0750", "isdir": true, "ischr": false, "isblk": false, "isreg": false, "isfifo": false, "islnk": false, "issock": false, "uid": 998, "gid": 999, "size": 4096, "inode": 262687, "dev": 64514, "nlink": 2, "atime": 1679648720.1248484, "mtime": 1679648755.3613708, "ctime": 1679648755.3613708, "wusr": true, "rusr": true, "xusr": true, "wgrp": false, "rgrp": true, "xgrp": true, "woth": false, "roth": false, "xoth": false, "isuid": false, "isgid": false, "blocks": 8, "block_size": 4096, "device_type": 0, "readable": true, "writeable": true, "executable": true, "pw_name": "amq-broker", "gr_name": "amq-broker", "mimetype": "inode/directory", "charset": "binary", "version": "3670010276", "attributes": ["extents"], "attr_flags": "e"}, "invocation": {"module_args": {"path": "/opt/amq", "follow": true, "get_checksum": true, "checksum_algorithm": "sha1", "get_md5": false, "get_mime": true, "get_attributes": true}}}\r\n', b'Shared connection to 84.201.156.163 closed.\r\n')
+Using module file /usr/lib/python3/dist-packages/ansible/modules/unarchive.py
+<84.201.156.163> PUT /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmpsdlu522h TO /home/makhlu/ansible-tmp-1679651403.5882254-913-237196261954686/AnsiballZ_unarchive.py
+<84.201.156.163> SSH: EXEC sftp -b - -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' '[84.201.156.163]'
+<84.201.156.163> (0, b'sftp> put /home/makhlu/.ansible/tmp/ansible-local-536mazhcdv7/tmpsdlu522h /home/makhlu/ansible-tmp-1679651403.5882254-913-237196261954686/AnsiballZ_unarchive.py\n', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'chmod u+x /home/makhlu/ansible-tmp-1679651403.5882254-913-237196261954686/ /home/makhlu/ansible-tmp-1679651403.5882254-913-237196261954686/AnsiballZ_unarchive.py && sleep 0'"'"''
+<84.201.156.163> (0, b'', b'')
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' -tt 84.201.156.163 '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-qeufrswtmpkvsunyrghqnpmfnagdabuc ; /usr/bin/python3 /home/makhlu/ansible-tmp-1679651403.5882254-913-237196261954686/AnsiballZ_unarchive.py'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+Escalation succeeded
+<84.201.156.163> (1, b'\r\n{"failed": true, "msg": "Failed to find handler for \\"/opt/amq/apache-artemis-2.18.0-bin.zip\\". Make sure the required command to extract the file is installed.\\nUnable to find required \'unzip\' or \'unzip\' binary in the path.\\nCommand \\"/usr/bin/tar\\" could not handle archive: Unable to list files in the archive: xz: (stdin): File format not recognized\\n/usr/bin/tar: Child returned status 1\\n/usr/bin/tar: Error is not recoverable: exiting now\\n\\nCommand \\"/usr/bin/tar\\" could not handle archive: Unable to list files in the archive: /usr/bin/tar: This does not look like a tar archive\\n/usr/bin/tar: Skipping to next header\\n/usr/bin/tar: Exiting with failure status due to previous errors\\n\\nCommand \\"/usr/bin/tar\\" could not handle archive: Unable to list files in the archive: tar (child): bzip2: Cannot exec: No such file or directory\\ntar (child): Error is not recoverable: exiting now\\n/usr/bin/tar: Child returned status 2\\n/usr/bin/tar: Error is not recoverable: exiting now\\n\\nCommand \\"/usr/bin/tar\\" could not handle archive: Unable to list files in the archive: gzip: stdin has more than one entry--rest ignored\\n/usr/bin/tar: Child returned status 2\\n/usr/bin/tar: Error is not recoverable: exiting now\\n\\nCommand \\"/usr/bin/tar\\" could not handle archive: Unable to list files in the archive: zstd: /*stdin*\\\\: unsupported format \\n/usr/bin/tar: Child returned status 1\\n/usr/bin/tar: Error is not recoverable: exiting now\\n\\nUnable to find required \'unzip\' or \'zipinfo\' binary in the path.", "invocation": {"module_args": {"remote_src": true, "src": "/opt/amq/apache-artemis-2.18.0-bin.zip", "dest": "/opt/amq", "creates": "/opt/amq/apache-artemis-2.18.0", "owner": "amq-broker", "group": "amq-broker", "list_files": false, "keep_newer": false, "exclude": [], "include": [], "extra_opts": [], "validate_certs": true, "io_buffer_size": 65536, "copy": true, "decrypt": true, "unsafe_writes": false, "mode": null, "seuser": null, "serole": null, "selevel": null, "setype": null, "attributes": null}}}\r\n', b'Shared connection to 84.201.156.163 closed.\r\n')
+<84.201.156.163> Failed to connect to the host via ssh: Shared connection to 84.201.156.163 closed.
+<84.201.156.163> ESTABLISH SSH CONNECTION FOR USER: makhlu
+<84.201.156.163> SSH: EXEC ssh -C -o ControlMaster=auto -o ControlPersist=60s -o 'IdentityFile="/home/makhlu/keys/sq-api-openssh-no-pass.key"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o 'User="makhlu"' -o ConnectTimeout=10 -o 'ControlPath="/home/makhlu/.ansible/cp/e60af39788"' 84.201.156.163 '/bin/sh -c '"'"'rm -f -r /home/makhlu/ansible-tmp-1679651403.5882254-913-237196261954686/ > /dev/null 2>&1 && sleep 0'"'"''
+<84.201.156.163> (0, b'', b'')
+fatal: [ecm_adapter_ubuntu]: FAILED! => {
+    "changed": false,
+    "invocation": {
+        "module_args": {
+            "attributes": null,
+            "copy": true,
+            "creates": "/opt/amq/apache-artemis-2.18.0",
+            "decrypt": true,
+            "dest": "/opt/amq",
+            "exclude": [],
+            "extra_opts": [],
+            "group": "amq-broker",
+            "include": [],
+            "io_buffer_size": 65536,
+            "keep_newer": false,
+            "list_files": false,
+            "mode": null,
+            "owner": "amq-broker",
+            "remote_src": true,
+            "selevel": null,
+            "serole": null,
+            "setype": null,
+            "seuser": null,
+            "src": "/opt/amq/apache-artemis-2.18.0-bin.zip",
+            "unsafe_writes": false,
+            "validate_certs": true
+        }
+    },
+    "msg": "Failed to find handler for \"/opt/amq/apache-artemis-2.18.0-bin.zip\". Make sure the required command to extract the file is installed.\nUnable to find required 'unzip' or 'unzip' binary in the path.\nCommand \"/usr/bin/tar\" could not handle archive: Unable to list files in the archive: xz: (stdin): File format not recognized\n/usr/bin/tar: Child returned status 1\n/usr/bin/tar: Error is not recoverable: exiting now\n\nCommand \"/usr/bin/tar\" could not handle archive: Unable to list files in the archive: /usr/bin/tar: This does not look like a tar archive\n/usr/bin/tar: Skipping to next header\n/usr/bin/tar: Exiting with failure status due to previous errors\n\nCommand \"/usr/bin/tar\" could not handle archive: Unable to list files in the archive: tar (child): bzip2: Cannot exec: No such file or directory\ntar (child): Error is not recoverable: exiting now\n/usr/bin/tar: Child returned status 2\n/usr/bin/tar: Error is not recoverable: exiting now\n\nCommand \"/usr/bin/tar\" could not handle archive: Unable to list files in the archive: gzip: stdin has more than one entry--rest ignored\n/usr/bin/tar: Child returned status 2\n/usr/bin/tar: Error is not recoverable: exiting now\n\nCommand \"/usr/bin/tar\" could not handle archive: Unable to list files in the archive: zstd: /*stdin*\\: unsupported format \n/usr/bin/tar: Child returned status 1\n/usr/bin/tar: Error is not recoverable: exiting now\n\nUnable to find required 'unzip' or 'zipinfo' binary in the path."
+}
+
+PLAY RECAP *********************************************************************
+ecm_adapter_ubuntu         : ok=32   changed=0    unreachable=0    failed=1    skipped=11   rescued=1    ignored=0   
+

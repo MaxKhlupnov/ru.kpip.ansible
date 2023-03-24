@@ -23,17 +23,17 @@
 #  notify:
 #    - restart amq_broker
 
-#- name: "Configure systemd unit file for {{ activemq.instance_name }} {{ activemq.service_name }} service"
-#  ansible.builtin.template:
-#    src: "{{ activemq_service_override_template | default('amq_broker.service.j2', true) }}"
-#    dest: "/etc/systemd/system/{{ activemq.instance_name }}.service"
-#    owner: root
-#    group: root
-#    mode: 0644
-#  become: yes
-#  register: systemdunit
-#  notify:
-#    - restart amq_broker
+- name: "Configure systemd unit file for {{ activemq.instance_name }} {{ activemq.service_name }} service"
+  ansible.builtin.template:
+    src: amq_broker.service.j2
+    dest: "/etc/systemd/system/{{ activemq.instance_name }}.service"
+    owner: root
+    group: root
+    mode: 0644
+  become: yes
+  register: systemdunit
+  notify:
+    - restart amq_broker
 
 - name: "Check instance directory: {{ activemq_dest }}/{{ activemq.instance_name }}"
   ansible.builtin.stat:

@@ -1,3 +1,8 @@
+ansible-galaxy collection build ./amq --force
+ansible-galaxy collection install middleware_automation-amq-*.tar.gz --force
+
+
+
 ansible ecm_adapter -a "df -h" -u makhlu
 
 ansible-inventory --list

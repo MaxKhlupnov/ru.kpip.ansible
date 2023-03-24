@@ -3,14 +3,14 @@
   block:
   - name: "Check if packages are already installed" # noqa command-instead-of-module this runs faster
     ansible.builtin.command: "rpm -q {{ packages_list | join(' ') }}"
-    register: rpm_info
-    changed_when: rpm_info.failed
+    register: apt_info
+    changed_when: apt_info.failed
 
   rescue:
-    - name: "Add missing packages to the yum install list"
+    - name: "Add missing packages to the apt install list"
       ansible.builtin.set_fact:
-        packages_to_install: "{{ packages_to_install | default([]) + rpm_info.stdout_lines | map('regex_findall', 'package (.+) is not installed$') | flatten }}"
-      when: rpm_info.failed
+        packages_to_install: "{{ packages_to_install | default([]) + apt_info.stdout_lines | map('regex_findall', 'package (.+) is not installed$') | flatten }}"
+      when: apt_info.failed
 
 - name: "Install packages: {{ packages_to_install }}"
   become: yes
