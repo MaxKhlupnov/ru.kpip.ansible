@@ -1,0 +1,41 @@
+---
+- hosts: localhost
+  vars:
+    packages_list: [unzip,python3-lxml,openjdk-17-jdk] # iproute,sed,procps-ng,initscripts,libaio
+
+  tasks:
+    - name: Gather the package facts
+      #become: true
+      ansible.builtin.package_facts:  
+        manager: auto
+
+    - name: "Test if package not installed"
+      ansible.builtin.debug:
+         msg: "Package {{ item }} is not installed"
+      loop: "{{ packages_list |difference( ansible_facts.packages.keys())  }}"
+
+
+    - name: "Install missing packages"
+      become: yes        
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ packages_list |difference( ansible_facts.packages.keys())  }}"
+
+#    - name: Print the package facts
+#      ansible.builtin.debug:
+#        var: ansible_facts.packages#
+#
+#    - name: "Test if package not installed"
+#      ansible.builtin.debug:
+#         msg: "Package {{ item }} is not installed"
+#      loop: "{{ packages_list |difference( ansible_facts.packages.keys())  }}"
+
+#    - name: "Install missing package: {{ item  }}"
+#      become: yes
+#      ansible.builtin.apt:
+#        name: "{{ item }}"
+#        state: present
+#      loop: "{{ packages_list |difference( ansible_facts.packages.keys())  }}"
+
+

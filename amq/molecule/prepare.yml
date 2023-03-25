@@ -4,7 +4,7 @@
     msg: "Ansible version is  {{ ansible_version.full }}"
 
 - name: Install sudo
-  ansible.builtin.yum:
+  ansible.builtin.apt:
     name: 
       - sudo
       - iproute

@@ -16,10 +16,16 @@ activemq:
   package_list: "{{ activemq_base_package_list + [activemq_jvm_package] + ([activemq_jmx_exporter_package] if activemq_jmx_exporter_enabled else []) }}"
 
 activemq_base_package_list:
-  - unzip
-  - iproute
-  - sed
-  - procps-ng
-  - initscripts
-  - libaio
-  - lxml
+      - unzip
+      - iproute2
+      - python3-lxml
+
+
+#activemq_base_package_list:
+#  - unzip
+#  - iproute
+#  - sed
+#  - procps-ng
+#  - initscripts
+#  - libaio
+#  - python3-lxml
