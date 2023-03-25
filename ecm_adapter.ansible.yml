@@ -9,7 +9,7 @@
     activemq_jvm_package: openjdk-19-jdk
     activemq_instance_username: ecm_adapter_admin # Username for accessing the broker instance
     activemq_instance_password: QEY73J7gCIh6cY1 # Password for accessing the broker instance
-    activemq_queues:  ecm_general.queue.in,ecm_general.queue.out,ecm_commission.queue.in,ecm_commission.queue.out    # Queue names comma separated
+    activemq_queues:  ecm_general.in,ecm_general.out,ecm_commission.in,ecm_commission.out    # Queue names comma separated
     activemq_addresses:                # Addresses/queue configuration; list of { name, [anycast or multicast], and parameters }
     - name: ExpiryQueue
     anycast:
