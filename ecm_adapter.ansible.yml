@@ -9,7 +9,7 @@
     activemq_jvm_package: openjdk-19-jdk
     activemq_instance_username: ecm_adapter_admin # Username for accessing the broker instance
     activemq_instance_password: QEY73J7gCIh6cY1 # Password for accessing the broker instance
-    activemq_queues:  ecm_general.in,ecm_general.out,ecm_commission.in,ecm_commission.out   # Queue names comma separated
+    # activemq_queues:  ecm_general.in,ecm_general.out,ecm_commission.in,ecm_commission.out   # Queue names comma separated
     # List of CORS allow origin setting for jolokia
     activemq_cors_allow_origin:  ["*://0.0.0.0*", 
                                 "*://{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}*", # Разрешаем доступ к консоли управления с IP-адреса хоста (для демо)
