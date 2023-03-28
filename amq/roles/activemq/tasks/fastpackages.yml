@@ -9,6 +9,14 @@
          msg: "Package {{ item }} is not installed"
       loop: "{{ packages_list |difference( ansible_facts.packages.keys())  }}"
 
+    - name: Update and upgrade apt packages before package install  
+      become: true
+      ansible.builtin.apt:
+      #  upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400 #One day   
+      when:  packages_list |difference( ansible_facts.packages.keys())  | length > 0  
+
 
     - name: "Install missing packages"
       become: yes        
@@ -16,4 +24,6 @@
         name: "{{ item }}"
         state: present
       loop: "{{ packages_list |difference( ansible_facts.packages.keys())  }}"
+      
 
+       
